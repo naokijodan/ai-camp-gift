@@ -2,55 +2,103 @@
 <html lang="ja">
 <head>
 <script>try{var __t=localStorage.getItem("gift-theme");if(__t==="light"||__t==="dark"){document.documentElement.setAttribute("data-theme",__t);}}catch(e){}</script>
+<script>document.documentElement.className+=" js";</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ただの自動出品ではありません｜eBay完全自動化AI合宿</title>
 <style>
 :root{
-  --bg:#f7f6f2; --surface:#ffffff; --text:#22262b; --muted:#5e666f; --line:#dedbd2;
-  --accent:#2f6f5e; --accent-soft:#e3f0eb;
+  --bg:#f6f5f0; --surface:#ffffff; --text:#1f2429; --muted:#566069; --line:#dcd9cf;
+  --accent:#0a7a6e; --accent2:#5a30e0; --hot:#d9480f; --accent-soft:#e0f4f0; --on-accent:#ffffff; --grad:linear-gradient(135deg,#087a6d,#5a30e0);
   --safe:#b3261e; --safe-soft:#fdeceb;
   --warn:#8a5a00; --warn-soft:#fff3d6;
-  --stage:#eef2f6;
+  --stage:#eef1f4;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#15181b; --surface:#1e2226; --text:#e8e9ea; --muted:#a3abb3; --line:#363c42;
-    --accent:#6cc4a8; --accent-soft:#1d3029;
+    --bg:#14171a; --surface:#1e2226; --text:#eceded; --muted:#a8b0b8; --line:#363c42;
+    --accent:#4fe3c8; --accent2:#a58bff; --hot:#ffa94d; --accent-soft:#12302b; --on-accent:#06201b; --grad:linear-gradient(135deg,#087a6d,#5a30e0);
     --safe:#ff8a80; --safe-soft:#3a1f1e;
     --warn:#f2c36b; --warn-soft:#3a2f15;
     --stage:#232a31;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#15181b; --surface:#1e2226; --text:#e8e9ea; --muted:#a3abb3; --line:#363c42;
-  --accent:#6cc4a8; --accent-soft:#1d3029;
+  --bg:#14171a; --surface:#1e2226; --text:#eceded; --muted:#a8b0b8; --line:#363c42;
+  --accent:#4fe3c8; --accent2:#a58bff; --hot:#ffa94d; --accent-soft:#12302b; --on-accent:#06201b; --grad:linear-gradient(135deg,#087a6d,#5a30e0);
   --safe:#ff8a80; --safe-soft:#3a1f1e;
   --warn:#f2c36b; --warn-soft:#3a2f15;
   --stage:#232a31;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:56px}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--bg);color:var(--text);
   font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
   line-height:1.8;font-size:16px;-webkit-text-size-adjust:100%;overflow-wrap:anywhere}
-.wrap{max-width:900px;margin:0 auto;padding:0 16px}
-nav{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--line)}
-nav ul{list-style:none;margin:0 auto;padding:8px 16px;max-width:900px;display:flex;gap:6px;overflow-x:auto;white-space:nowrap}
-nav a{display:block;padding:4px 10px;border-radius:999px;font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--line)}
+.wrap{max-width:920px;margin:0 auto;padding:0 16px}
+svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+nav{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center}
+nav ul{list-style:none;flex:1 1 auto;min-width:0;margin:0;padding:6px 16px;display:flex;gap:6px;overflow-x:auto;white-space:nowrap}
+nav li{margin:0}
+nav a{display:flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;font-size:14px;color:var(--muted);text-decoration:none;border:1px solid var(--line)}
 nav a:hover{color:var(--accent);border-color:var(--accent)}
-.hero{padding:40px 0 28px}
-.hero .tag{display:inline-block;font-size:13px;color:var(--accent);background:var(--accent-soft);padding:2px 12px;border-radius:999px;margin-bottom:12px}
-h1{font-size:clamp(26px,6vw,40px);line-height:1.35;margin:0 0 12px}
-.hero p{font-size:17px;color:var(--muted);margin:0 0 10px}
-section{padding:28px 0;border-top:1px solid var(--line)}
-h2{font-size:24px;margin:0 0 16px;line-height:1.4}
+.themebtn{flex:none;margin:0 12px 0 0;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--stage);color:var(--text);font:inherit;font-size:14px;cursor:pointer;white-space:nowrap}
+.themebtn:hover{border-color:var(--accent);color:var(--accent)}
+.themebtn:focus-visible,nav a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.hero{position:relative;overflow:hidden;color:#fff;text-align:center;padding:56px 0 40px;background:radial-gradient(60% 50% at 50% 38%,rgba(79,227,200,.28),rgba(79,227,200,0) 70%),radial-gradient(40% 40% at 85% 10%,rgba(138,99,255,.35),rgba(138,99,255,0) 70%),linear-gradient(160deg,#0a0f2c 0%,#1a1050 55%,#08384a 100%)}
+.hero .tag{display:inline-block;font-size:13px;color:#7ff0da;background:rgba(127,240,218,.12);border:1px solid rgba(127,240,218,.5);padding:3px 14px;border-radius:999px;margin-bottom:18px;font-weight:700}
+h1{text-wrap:balance;font-size:clamp(32px,9vw,64px);line-height:1.2;margin:0 0 14px;letter-spacing:.02em}
+.hero h1{background:linear-gradient(90deg,#fff 20%,#7ff0da 60%,#c3b2ff);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none}
+.hero p.sub{text-wrap:balance;font-size:clamp(18px,4.6vw,26px);color:#ffd8a8;font-weight:700;margin:0 0 8px}
+.hgrid{display:grid;grid-template-columns:1fr;gap:8px;grid-template-areas:"ht" "hp" "hv"}
+.ht{grid-area:ht}.hp{grid-area:hp}.hv{grid-area:hv}
+.person{display:block;width:100%;max-width:340px;height:auto;margin:8px auto 0;overflow:visible}
+.person text{font-family:inherit}
+.person .bub{animation:pop .9s .5s cubic-bezier(.2,1.4,.4,1) both;transform-box:fill-box;transform-origin:center}
+.person .spk{transform-box:fill-box;transform-origin:center;animation:twinkle 2s ease-in-out infinite}
+.person .head{transform-box:fill-box;transform-origin:50% 100%;animation:sway 4s ease-in-out infinite}
+@keyframes pop{0%{opacity:0;transform:translateY(26px) scale(.85)}100%{opacity:1;transform:none}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.6)}50%{opacity:1;transform:scale(1.1)}}
+@keyframes sway{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+.figcap{margin:4px 0 0;font-size:13px;color:#c9d2ff}
+@media (min-width:900px){
+  .hgrid{grid-template-columns:1.05fr .95fr;column-gap:36px;grid-template-areas:"ht hp" "hv hp";align-items:center;text-align:left}
+  .hgrid .herovis{margin-left:0}
+  .hgrid .sub{font-size:clamp(17px,1.9vw,22px);text-wrap:balance}
+  .hgrid h1{font-size:clamp(34px,4.3vw,52px)}
+  .person{max-width:440px}
+  .hero{padding:72px 0 56px}
+}
+.herovis{display:block;width:100%;max-width:560px;height:auto;margin:20px auto 0;overflow:visible}
+.herovis text{font-family:inherit;fill:#fff}
+.herovis .flow{stroke-dasharray:6 8;animation:flow 1s linear infinite}
+.herovis .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+.herovis .glow{animation:glow 2.4s ease-in-out infinite}
+@keyframes flow{to{stroke-dashoffset:-28}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 6px rgba(127,240,218,.6))}50%{filter:drop-shadow(0 0 20px rgba(127,240,218,1))}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@keyframes dash{to{stroke-dashoffset:-18}}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes halo{0%,100%{box-shadow:0 0 18px rgba(90,48,224,.45),0 0 40px rgba(8,122,109,.35)}50%{box-shadow:0 0 30px rgba(90,48,224,.8),0 0 64px rgba(79,227,200,.6)}}
+@media (prefers-reduced-motion:no-preference){
+  .js .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .js .rv.in{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+section{padding:64px 0 8px}
+.secno{display:flex;align-items:center;gap:12px;color:var(--accent);font-weight:800;font-size:34px;line-height:1.2;letter-spacing:.06em;margin-bottom:4px}
+.secno::after{content:"";height:4px;width:64px;background:var(--grad);border-radius:4px}
+h2{font-size:clamp(22px,5.4vw,30px);margin:0 0 20px;line-height:1.4}
 h3{font-size:18px;margin:20px 0 8px}
 p{margin:0 0 12px}
 ul,ol{margin:0 0 12px;padding-left:1.4em}
 li{margin-bottom:4px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
-.card h3{margin-top:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px}
 .note{border-radius:10px;padding:12px 16px;margin:12px 0;font-size:15px;background:var(--accent-soft);border:1px solid var(--accent)}
 .note.warn{background:var(--warn-soft);border:1px solid var(--warn)}
 .note.warn b{color:var(--warn)}
@@ -74,33 +122,31 @@ td.area{font-weight:700;white-space:nowrap}
   td.area{white-space:normal;font-size:17px;color:var(--accent)}
   td[data-l]::before{content:attr(data-l);display:block;font-size:12px;color:var(--muted);margin-top:4px}
 }
-footer{padding:24px 0 48px;color:var(--muted);font-size:13px}
+footer{padding:48px 0 56px;color:var(--muted);font-size:13px;text-align:center}
 
-.hero p.sub{font-size:20px;color:var(--text);font-weight:700}
 .layer{margin:0 0 4px}
-.layer .lbl{display:inline-block;font-size:13px;color:var(--accent);background:var(--accent-soft);padding:2px 12px;border-radius:999px;margin-bottom:8px;font-weight:700}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.layer .lbl{display:inline-block;font-size:14px;color:var(--accent);background:var(--accent-soft);padding:2px 14px;border-radius:999px;margin-bottom:10px;font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:720px){.two{grid-template-columns:1fr}}
-.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.box h3{margin:0 0 6px;font-size:17px}
-.box p{margin:0 0 6px;font-size:15px}
-.arrow{text-align:center;margin:10px 0}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.box .ico{width:56px;height:56px;border-radius:16px;background:var(--grad);color:#fff;box-shadow:0 4px 14px rgba(90,48,224,.35);display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:4px}
+.box h3{margin:0;font-size:20px;line-height:1.4}
+.box h3 small{display:block;font-size:13px;font-weight:400;color:var(--muted);line-height:1.5;margin-top:2px}
+.box h3 .gn{color:var(--accent);margin-right:.3em}
+.box p{margin:0;font-size:15px;color:var(--muted);line-height:1.6}
+.box p.small{font-size:13px}
+.full{display:none}
+.arrow{text-align:center;margin:18px 0}
 .arrow .shaft{width:2px;height:16px;background:var(--accent);margin:0 auto}
-.arrow .lab{display:inline-block;font-size:14px;font-weight:700;color:var(--accent);padding:2px 12px}
+.arrow .lab{display:inline-block;font-size:15px;font-weight:700;color:var(--accent);padding:2px 14px}
 .arrow .head{width:0;height:0;margin:0 auto;border-left:10px solid transparent;border-right:10px solid transparent;border-top:12px solid var(--accent)}
-.you{border:2px solid var(--accent);background:var(--accent-soft);border-radius:14px;padding:18px 20px}
-.you h3{margin:0 0 10px;color:var(--accent);font-size:20px}
-.you ol{margin:0;padding-left:1.4em}
-.you li{margin-bottom:8px}
-.goal{border:2px solid var(--accent);background:var(--accent-soft);border-radius:14px;padding:18px 20px}
-.goal h3{margin:0 0 12px;color:var(--accent);font-size:20px}
-.goal .box h3{font-size:17px;color:var(--text);margin:0 0 6px}
 
-.click{cursor:pointer;position:relative}
-.click:hover{border-color:var(--accent)}
+.click{cursor:pointer;position:relative;transition:border-color .15s,transform .15s}
+.click:hover{border-color:var(--accent);transform:translateY(-6px);box-shadow:0 12px 28px rgba(90,48,224,.22)}
 .click:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.hint{display:inline-block;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:0 10px;margin-top:4px}
-.maphint{font-size:14px;color:var(--muted);margin:0 0 12px}
+.hint{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:0 12px;min-height:30px;margin-top:6px}
+.hint::after{content:"\203A";font-weight:700}
+.maphint{font-size:14px;color:var(--muted);margin:0 0 16px}
 dialog{width:min(860px,calc(100vw - 24px));max-width:calc(100vw - 24px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--text)}
 dialog[open]{display:flex;flex-direction:column}
 dialog::backdrop{background:rgba(0,0,0,.55)}
@@ -110,56 +156,141 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
 .dclose:focus-visible{outline:3px solid var(--accent)}
 .dbody{overflow-y:auto;overflow-x:hidden;padding:14px 18px 22px;-webkit-overflow-scrolling:touch}
 .dbody h3.grp{font-size:17px;margin:18px 0 8px;color:var(--accent)}
+.dbody .intro{background:var(--accent-soft);border:1px solid var(--accent);border-radius:12px;padding:12px 16px 4px;margin-bottom:8px}
+.dbody .intro p:last-child{margin-bottom:8px}
 .tool{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:12px}
 .tool h4{margin:0 0 6px;font-size:17px}
 .tool p{margin:0 0 8px;font-size:15px}
 .ask{font-size:14px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:6px 12px;margin:0}
 .ask b{color:var(--accent)}
 html.lock{overflow:hidden}
-nav{display:flex;align-items:center}
-nav ul{flex:1 1 auto;min-width:0;margin:0}
-.themebtn{flex:none;margin:0 12px 0 0;min-height:36px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:var(--stage);color:var(--text);font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
-.themebtn:hover{border-color:var(--accent);color:var(--accent)}
-.themebtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.core{border:3px solid var(--accent);background:var(--accent-soft);border-radius:16px;padding:20px 18px;margin:8px 0 24px}
-.core h2{color:var(--accent);margin-top:0}
-.trio{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
-.trio .plus{align-self:center;font-size:28px;font-weight:700;color:var(--accent);text-align:center}
-.trio .box{background:var(--surface)}
-@media (max-width:720px){.trio{grid-template-columns:1fr}.trio .plus{line-height:1}}
-.result{background:var(--accent);border-radius:14px;padding:18px 20px;text-align:center}
-.result h3{margin:0 0 8px;font-size:clamp(22px,5vw,28px);color:var(--surface)}
-.result p{margin:0;color:var(--surface);font-size:16px}
-.cap{font-size:14px;color:var(--muted);margin:6px 0 14px}
-.quality{margin-top:16px;padding-top:14px;border-top:1px solid var(--surface)}
-.quality h4{margin:0 0 6px;font-size:17px;color:var(--surface)}
-.quality p{margin:0 0 8px;font-size:15px;color:var(--surface)}
-.quality ul{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.quality li{margin:0;background:var(--surface);color:var(--text);border-radius:999px;padding:4px 14px;font-size:14px;font-weight:700;line-height:1.5}
-.chips{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.chips li{margin:0;background:var(--stage);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:14px}
-.chips li.etc{background:transparent;border-style:dashed;color:var(--muted)}
-.ring{display:grid;grid-template-columns:1fr 72px 1fr;gap:8px;align-items:center;margin:8px 0 16px}
-.ring .st{background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.ring .st p{margin:0;font-size:15px}
-.ring .no{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--surface);display:flex;align-items:center;justify-content:center;font-weight:700}
-.ring .ar{text-align:center;font-size:26px;font-weight:700;color:var(--accent);line-height:1}
-.ring .ar .mb{display:none}
-.ring .ctr{text-align:center;white-space:nowrap;font-size:13px;color:var(--muted);align-self:center}
-.ring .s1{grid-area:1/1}.ring .a12{grid-area:1/2}.ring .s2{grid-area:1/3}
-.ring .a41{grid-area:2/1}.ring .ctr{grid-area:2/2}.ring .a23{grid-area:2/3}
-.ring .s4{grid-area:3/1}.ring .a34{grid-area:3/2}.ring .s3{grid-area:3/3}
+
+/* 01 main */
+.trio{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:stretch}
+.trio .plus{align-self:center;font-size:26px;font-weight:700;color:var(--accent);text-align:center;width:28px}
+.merge{display:block;width:100%;height:56px;margin-top:6px}
+.merge path{fill:none;stroke:var(--accent2);stroke-width:3;stroke-linecap:round;stroke-dasharray:6 6;vector-effect:non-scaling-stroke;animation:dash .9s linear infinite}
+.mergearrow{display:block;margin:-2px auto 0;width:28px;height:22px;fill:var(--accent2);animation:bob 1.4s ease-in-out infinite}
 @media (max-width:720px){
-  .ring{display:flex;flex-direction:column;gap:4px;align-items:stretch}
-  .ring>*{grid-area:auto}
-  .ring .s1{order:1}.ring .a12{order:2}.ring .s2{order:3}.ring .a23{order:4}.ring .s3{order:5}.ring .a34{order:6}.ring .s4{order:7}.ring .a41{order:8}
-  .ring .ctr{display:none}
-  .ring .ar .dk{display:none}.ring .ar .mb{display:inline;font-size:20px}
+  .trio{grid-template-columns:1fr;gap:6px}
+  .trio .plus{width:auto;line-height:1}
+  .merge{display:none}
+  .mergearrow{margin-top:14px}
 }
-.circle-note{font-size:16px;border-width:2px}
+.result{background:var(--grad);border-radius:20px;padding:26px 22px;text-align:center;margin-top:2px;animation:halo 3s ease-in-out infinite}
+.result h3{margin:0 0 8px;font-size:clamp(26px,7vw,38px);color:#fff}
+.result p{margin:0;color:#fff;font-size:15px;line-height:1.8}
+.quality{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
+.quality h3{margin:0 0 14px;font-size:22px;text-align:center}
+.cmp{display:grid;grid-template-columns:1fr 1.5fr;gap:14px;align-items:stretch}
+@media (max-width:720px){.cmp{grid-template-columns:1fr}}
+.cmp .bad,.cmp .good{border-radius:14px;padding:16px 18px}
+.cmp .bad{background:var(--safe-soft);border:2px solid var(--safe);display:flex;flex-direction:column;gap:8px;align-items:flex-start;justify-content:center}
+.cmp .bad .mk,.cmp .good .mk{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.cmp .bad .mk{background:var(--safe);color:var(--surface)}
+.cmp .bad .tx{font-size:20px;font-weight:700;color:var(--safe);line-height:1.5}
+.cmp .bad .tx span{font-size:14px;font-weight:400;color:var(--text);display:block}
+.cmp .good{background:var(--accent-soft);border:2px solid var(--accent)}
+.cmp .good .mk{background:var(--grad);color:#fff;margin-bottom:8px}
+.cmp .good ul{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:8px}
+.cmp .good li{margin:0;background:var(--surface);border-radius:10px;padding:9px 14px;font-weight:700;font-size:15px;line-height:1.5;display:flex;gap:8px;align-items:flex-start}
+.cmp .good li svg{color:var(--accent);font-size:20px;margin-top:2px}
+.cmp .good p{margin:0;font-size:14px;color:var(--text)}
+
+.why{margin-top:28px;background:var(--surface);border:2px solid var(--accent2);border-radius:20px;padding:24px 20px;box-shadow:0 0 28px rgba(90,48,224,.18)}
+.why h3{margin:0 0 16px;font-size:clamp(20px,5.4vw,26px);text-align:center;color:var(--accent2)}
+.why .look{display:flex;justify-content:center}
+.why .chip1{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#fff;font-weight:800;border-radius:999px;padding:10px 22px;font-size:17px;min-height:48px}
+.why .chip1 svg{font-size:24px}
+.why .vdown{display:block;margin:8px auto;width:22px;height:20px;fill:var(--accent2);animation:bob 1.3s ease-in-out infinite}
+.why .judges{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:720px){.why .judges{grid-template-columns:1fr}}
+.why .j{border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;font-weight:800;font-size:19px;border:2px solid var(--line);background:var(--stage)}
+.why .j .mk{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none;color:#fff}
+.why .j.ok{border-color:var(--accent);background:var(--accent-soft)}.why .j.ok .mk{background:var(--accent);color:var(--on-accent)}
+.why .j.ng{border-color:var(--safe);background:var(--safe-soft);color:var(--safe)}.why .j.ng .mk{background:var(--safe);color:var(--surface)}
+.why .j.hm{border-color:var(--hot);background:var(--warn-soft);color:var(--warn)}.why .j.hm .mk{background:var(--hot);color:#fff}
+.why .reason{position:relative;margin:16px auto 0;max-width:520px;background:var(--warn-soft);border:2px dashed var(--warn);border-radius:12px;padding:14px 18px 12px;transform:rotate(-1deg)}
+.why .reason .eg{position:absolute;top:-12px;left:14px;background:var(--hot);color:#fff;font-size:13px;font-weight:800;border-radius:999px;padding:0 12px;line-height:24px}
+.why .reason p{margin:0;font-weight:700;color:var(--text);font-size:16px}
+.why .reason small{display:block;margin-top:4px;font-size:13px;color:var(--muted);font-weight:400}
+.why .esc{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin:20px 0 4px}
+.why .esc .step{background:var(--warn-soft);border:2px solid var(--hot);color:var(--text);border-radius:14px;padding:8px 14px;font-weight:800;font-size:15px;min-height:44px;display:flex;align-items:center;text-align:center}
+.why .esc .step.fin{background:var(--grad);border-color:transparent;color:#fff}
+.why .esc .ar{color:var(--accent2);font-weight:800;font-size:20px;animation:bob 1.3s ease-in-out infinite}
+@media (max-width:720px){.why .esc{flex-direction:column}.why .esc .ar{transform:rotate(90deg);animation:none}.why .esc .step{width:100%;justify-content:center}}
+.why .lead{margin:18px 0 0;text-align:center;font-weight:800;font-size:clamp(15px,4vw,17px);line-height:1.9}
+/* 02 circle */
+.chips{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 16px;font-size:14px;line-height:1.5}
+.chips li.etc{background:transparent;border-style:dashed;color:var(--muted)}
+.cyc{display:flex;flex-direction:column;gap:30px;margin:24px 0 24px;position:relative}
+.cyc .ringsvg{display:none}
+.cyc .st{background:var(--surface);border:2px solid var(--accent2);border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center;position:relative}
+.cyc .st p{margin:0;font-size:15px;line-height:1.6}
+.cyc .no{flex:none;width:36px;height:36px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.cyc .st::before{content:"";position:absolute;left:50%;bottom:-30px;width:2px;height:16px;background:var(--accent);transform:translateX(-50%)}
+.cyc .st::after{content:"";animation:bob 1.2s ease-in-out infinite;position:absolute;left:50%;bottom:-17px;margin-left:-8px;border-left:8px solid transparent;border-right:8px solid transparent;border-top:10px solid var(--accent2)}
+.cyc .s4::before,.cyc .s4::after{display:none}
+.cyc .ctr{display:none}
+.cyc .back{text-align:center;color:var(--accent);font-weight:700;font-size:15px;margin-top:-14px}
+@media (min-width:821px){
+  .cyc{display:block;aspect-ratio:800/400;margin:32px 0}
+  .cyc .ringsvg{display:block;position:absolute;inset:0;width:100%;height:100%}
+  .cyc .ringsvg .loop{fill:none;stroke:var(--accent);stroke-width:3;stroke-dasharray:2 7;stroke-linecap:round;opacity:.85;animation:dash 1.2s linear infinite}
+  .cyc .ringsvg .chev{fill:var(--accent2)}
+  .cyc .st{position:absolute;width:38%;height:31%;padding:10px 18px}
+  .cyc .st::before,.cyc .st::after{display:none}
+  .cyc .s1{left:0;top:0}.cyc .s2{right:0;top:0}.cyc .s3{right:0;bottom:0}.cyc .s4{left:0;bottom:0}
+  .cyc .ctr{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);align-items:center;gap:6px;font-weight:700;color:var(--accent);font-size:20px;background:var(--bg);padding:2px 12px}
+  .cyc .back{display:none}
+}
+.circle-note{font-size:16px;border-width:2px;border-radius:14px;padding:16px 20px;line-height:1.9}
+
+/* 04 finish */
+.you{border:2px solid var(--accent2);background:var(--accent-soft);border-radius:18px;padding:18px 18px 8px}
+.you h3{margin:0 0 14px;color:var(--accent);font-size:20px}
+.you ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;counter-reset:y}
+@media (max-width:720px){.you ol{grid-template-columns:1fr}}
+.you li{margin:0 0 12px;background:var(--surface);border-radius:14px;padding:14px 16px;line-height:1.7;font-size:15px;color:var(--muted);counter-increment:y}
+.you li b{display:flex;gap:10px;align-items:center;color:var(--text);font-size:17px;line-height:1.4;margin-bottom:6px}
+.you li b::before{content:counter(y);flex:none;width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px}
+.goal{border:2px solid var(--accent2);background:radial-gradient(60% 60% at 80% 0%,rgba(138,99,255,.35),rgba(138,99,255,0) 70%),linear-gradient(160deg,#0a0f2c,#1a1050 60%,#08384a);border-radius:20px;padding:20px 18px 8px;box-shadow:0 0 36px rgba(90,48,224,.35)}
+.goal>h3{margin:0 0 16px;color:#fff;font-size:clamp(19px,5vw,24px)}
+.goal .two{margin-bottom:10px}
+.goal .box .ico{animation:halo 3s ease-in-out infinite}
+
+/* 05 promise */
+.promise{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:720px){.promise{grid-template-columns:1fr}}
+.promise .pc{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;font-size:16px;line-height:1.7}
+.promise .pc .ico{width:48px;height:48px;border-radius:14px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;flex:none}
+.promise .pc span.tx{display:block}
+.cap{font-size:clamp(18px,4.8vw,24px);font-weight:800;color:var(--accent);text-align:center;margin:28px 0 8px;line-height:1.6}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7.5" cy="7.5" r="1.3"/></symbol>
+<symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></symbol>
+<symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5"/><path d="M6 8h12v3a6 6 0 0 1-12 0z"/><path d="M12 17v4"/></symbol>
+<symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M4 8h4a2 2 0 1 1 4 0h4v4a2 2 0 1 1 0 4v4H4z"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v4h16v-4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M15 4a5 5 0 0 0-4.5 6.8L3 18.3 5.7 21l7.5-7.5A5 5 0 0 0 20 9l-3 3-3-1-1-3z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M3 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3z"/><path d="M21 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11H3z"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L5 14h6l-1 8 8-12h-6z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-q" viewBox="0 0 24 24"><path d="M9 9a3 3 0 1 1 4.5 2.6c-1 .6-1.5 1.2-1.5 2.4"/><path d="M12 17.5v.5"/></symbol>
+<symbol id="i-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/></symbol>
+</defs></svg>
 <nav><ul>
 <li><a href="#main">メイン</a></li>
 <li><a href="#circle">キーワードの切り口</a></li>
@@ -168,42 +299,109 @@ nav ul{flex:1 1 auto;min-width:0;margin:0}
 <li><a href="#promise">受け取るときの約束</a></li>
 <li><a href="#record">2年間の開発</a></li>
 </ul><button type="button" class="themebtn" id="themebtn" aria-label="表示の明るさを切り替え"></button></nav>
-<div class="wrap">
-<header class="hero">
-  <span class="tag">eBay完全自動化AI合宿 ／ 配布資料</span>
+<header class="hero"><div class="wrap"><div class="hgrid">
+  <div class="ht"><span class="tag">eBay完全自動化AI合宿 ／ 配布資料</span>
   <h1>ただの自動出品ではありません。</h1>
-  <p class="sub">3つを組み合わせた、質の高い自動出品</p>
-</header>
-
-<section id="main" class="core">
+  <p class="sub">3つを組み合わせた、質の高い自動出品</p></div>
+  <div class="hp"><svg class="person" viewBox="0 0 400 390" role="img" aria-label="にこにこ笑う人が、スマホでAIからの報告を確認している絵">
+      <defs><linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0fa595"/><stop offset="1" stop-color="#6b3ff0"/></linearGradient></defs>
+      <ellipse cx="110" cy="384" rx="110" ry="8" fill="#000" opacity=".25"/>
+      <path d="M22 390 V275 Q22 205 110 198 Q198 205 198 275 V390z" fill="url(#shirt)"/>
+      <path d="M88 200 Q110 226 132 200" fill="#ffd2a8"/>
+      <rect x="96" y="168" width="28" height="36" rx="10" fill="#f5be92"/>
+      <path d="M170 238 Q214 262 244 312" fill="none" stroke="#5a30e0" stroke-width="30" stroke-linecap="round"/>
+      <g class="head">
+        <circle cx="110" cy="118" r="50" fill="#ffd2a8"/>
+        <path d="M58 118 Q52 58 112 58 Q170 58 162 118 Q150 86 112 86 Q72 86 58 118z" fill="#2b1d3a"/>
+        <path d="M89 118 q8 -10 16 0 M118 118 q8 -10 16 0" fill="none" stroke="#3b2a20" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M92 138 Q111 160 130 138z" fill="#c2453a" stroke="#3b2a20" stroke-width="3" stroke-linejoin="round"/>
+        <circle cx="82" cy="136" r="8" fill="#ff8f8f" opacity=".5"/><circle cx="140" cy="136" r="8" fill="#ff8f8f" opacity=".5"/>
+      </g>
+      <rect x="205" y="120" width="180" height="230" rx="24" fill="#0b1026" stroke="#7ff0da" stroke-width="3"/>
+      <rect x="214" y="140" width="162" height="192" rx="14" fill="#1b2160"/>
+      <rect x="272" y="127" width="46" height="6" rx="3" fill="#2d3680"/>
+      <circle cx="248" cy="313" r="15" fill="#ffd2a8"/>
+      <g class="bub">
+        <rect x="220" y="178" width="152" height="74" rx="14" fill="#fff"/>
+        <text x="230" y="205" font-size="14" font-weight="800" fill="#10211b">AI：今日は、<tspan x="230" dy="23">500品出品しました</tspan></text>
+        <circle cx="352" cy="198" r="9" fill="#12a592"/><path d="M347 198 l4 4 7 -8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <g fill="#ffd8a8"><path class="spk" d="M372 160 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z"/><path class="spk" style="animation-delay:.7s" d="M200 96 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z"/><path class="spk" style="animation-delay:1.3s" d="M392 262 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z"/></g>
+    </svg>
+    <p class="figcap">イメージです（件数は例）</p></div>
+  <div class="hv"><svg class="herovis" viewBox="0 0 480 290" role="img" aria-label="スキル、eBay、EAGLEの3つが1つに合わさり、質の高い自動出品になる図">
+    <g fill="none" stroke="#7ff0da" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="flow">
+      <path d="M80 128 V150 Q80 170 105 175 L215 195"/>
+      <path d="M240 128 V190"/>
+      <path d="M400 128 V150 Q400 170 375 175 L265 195"/>
+    </g>
+    <path d="M240 202 l-10 -13 h20 z" fill="#7ff0da"/>
+    <g fill="rgba(127,240,218,.14)" stroke="#7ff0da" stroke-width="2.5">
+      <circle class="pulse" cx="80" cy="50" r="36"/><circle class="pulse" cx="240" cy="50" r="36" style="animation-delay:.3s"/><circle class="pulse" cx="400" cy="50" r="36" style="animation-delay:.6s"/>
+    </g>
+    <g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(60 30) scale(1.67)"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></g>
+      <g transform="translate(220 30) scale(1.67)"><path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7.5" cy="7.5" r="1.3"/></g>
+      <g transform="translate(380 30) scale(1.67)"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></g>
+    </g>
+    <g text-anchor="middle" font-size="17" font-weight="700">
+      <text x="80" y="112">AIのスキル</text><text x="240" y="112">eBayのAPI</text><text x="400" y="112">EAGLEのAPI</text>
+    </g>
+    <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0fa595"/><stop offset="1" stop-color="#6b3ff0"/></linearGradient></defs>
+    <rect class="glow" x="60" y="208" width="360" height="72" rx="20" fill="url(#hg)" stroke="#fff" stroke-opacity=".6" stroke-width="2"/>
+    <text x="240" y="253" text-anchor="middle" font-size="27" font-weight="800">質の高い自動出品</text>
+  </svg></div>
+</div></div></header>
+<div class="wrap">
+<section id="main" class="rv">
+  <div class="secno">01</div>
   <h2>メイン：3つを組み合わせて、質の高い自動出品</h2>
   <p class="maphint">枠をクリック（タップ）すると、詳しい内容が開きます。</p>
   <div class="trio">
-    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="skill" data-title="AIのスキル"><h3>AIのスキル</h3><p>翻訳、自動出品、問い合わせ返信、評価へのお礼返信、クーポン配信、見られていない出品の洗い出し など、eBayの仕事をAIに任せる手順書です。</p><span class="hint">クリックで詳しく</span></div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="skill" data-title="AIのスキル"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg></span><h3>AIのスキル</h3><p>eBayの仕事をAIに任せる手順書</p><span class="hint">クリックで詳しく</span><div class="full"><p>翻訳、自動出品、問い合わせ返信、評価へのお礼返信、クーポン配信、見られていない出品の洗い出し など、eBayの仕事をAIに任せる手順書です。</p></div></div>
     <div class="plus" aria-hidden="true">＋</div>
-    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ebay" data-title="eBayのAPI"><h3>eBayのAPI</h3><p>出品・注文・メッセージ・配送ポリシー・評価・販売促進・数字の確認 など10分野</p><span class="hint">クリックで詳しく</span></div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ebay" data-title="eBayのAPI"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg></span><h3>eBayのAPI</h3><p>出品・注文・メッセージなど10分野</p><span class="hint">クリックで詳しく</span><div class="full"><p>出品・注文・メッセージ・配送ポリシー・評価・販売促進・数字の確認 など10分野</p></div></div>
     <div class="plus" aria-hidden="true">＋</div>
-    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="eagle" data-title="EAGLEのAPI"><h3>EAGLEのAPI</h3><p>一括登録・仕入れ先などの一括更新・その結果の確認・商品一覧・テンプレートとポリシーの一覧</p><span class="hint">クリックで詳しく</span></div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="eagle" data-title="EAGLEのAPI"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg></span><h3>EAGLEのAPI</h3><p>一括登録・一括更新・商品一覧など</p><span class="hint">クリックで詳しく</span><div class="full"><p>一括登録・仕入れ先などの一括更新・その結果の確認・商品一覧・テンプレートとポリシーの一覧</p></div></div>
   </div>
-  <div class="arrow"><div class="shaft"></div><div class="head"></div></div>
+  <svg class="merge" viewBox="0 0 300 56" preserveAspectRatio="none" aria-hidden="true"><path d="M47 0 V16 Q47 28 62 30 L135 38 Q150 40 150 52"/><path d="M150 0 V52"/><path d="M253 0 V16 Q253 28 238 30 L165 38 Q150 40 150 52"/></svg>
+  <svg class="mergearrow" viewBox="0 0 28 22" aria-hidden="true"><path d="M14 22 L1 4 H27 z"/></svg>
   <div class="result">
     <h3>質の高い自動出品</h3>
     <p>スキルが手順と判断を、eBayのAPIが出品と確認を、EAGLEのAPIが登録と在庫・仕入れ先の管理を受け持ちます。</p>
-    <div class="quality">
-      <h4>質が高いとは</h4>
-      <p>何でもかんでも出品するのではなく、</p>
-      <ul>
-        <li>自分のアカウントと相性の良い物</li>
-        <li>自分が選びやすいパターンの物</li>
-        <li>過去に売れた物から広げた物</li>
-        <li>ウォッチや閲覧の多い物から広げた物</li>
-      </ul>
-      <p>を選んで出品します。</p>
+  </div>
+  <div class="quality">
+    <h3>質が高いとは</h3>
+    <div class="cmp">
+      <div class="bad"><span class="mk"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><div class="tx">何でもかんでも出品<span>するのではなく、</span></div></div>
+      <div class="good"><span class="mk"><svg class="ic" aria-hidden="true"><use href="#i-circle"/></svg></span>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>自分のアカウントと相性の良い物</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>自分が選びやすいパターンの物</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>過去に売れた物から広げた物</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>ウォッチや閲覧の多い物から広げた物</span></li>
+        </ul>
+        <p>を選んで出品します。</p>
+      </div>
     </div>
+  </div>
+  <div class="why">
+    <h3>AIの選び方には、根拠がある</h3>
+    <div class="look"><span class="chip1"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg>AIが商品を見る</span></div>
+    <svg class="vdown" viewBox="0 0 22 20" aria-hidden="true"><path d="M11 20 L1 4 H21 z"/></svg>
+    <div class="judges" aria-label="判定は3つ">
+      <div class="j ok"><span class="mk"><svg class="ic" aria-hidden="true"><use href="#i-circle"/></svg></span>出品する</div>
+      <div class="j ng"><span class="mk"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span>出品しない</div>
+      <div class="j hm"><span class="mk"><svg class="ic" aria-hidden="true"><use href="#i-q"/></svg></span>迷う</div>
+    </div>
+    <div class="reason"><span class="eg">例</span><p>選んだ理由：過去に売れた物と同じシリーズ</p><small>なぜ選んだか（根拠）</small></div>
+    <div class="esc" aria-label="迷うときの流れ"><span class="step">迷う</span><span class="ar" aria-hidden="true">→</span><span class="step">AIが報告</span><span class="ar" aria-hidden="true">→</span><span class="step">人間がチェック</span><span class="ar" aria-hidden="true">→</span><span class="step fin">出品する／しない を決める</span></div>
+    <p class="lead">AIは、なぜその商品を選んだのかを必ず示します。迷った物は報告させ、人間がチェックしてから出品するかを決めます。</p>
   </div>
 </section>
 
-<section id="circle">
+<section id="circle" class="rv">
+  <div class="secno">02</div>
   <h2>出品キーワードは、いろいろな切り口から</h2>
   <p>何を出品するかの基準になるキーワードには、いろいろな切り口があります。元になるデータもさまざまです。</p>
   <ul class="chips">
@@ -213,38 +411,44 @@ nav ul{flex:1 1 auto;min-width:0;margin:0}
     <li>ウォッチや閲覧の多い物</li>
     <li class="etc">など</li>
   </ul>
-  <div class="ring">
+  <div class="cyc">
+    <svg class="ringsvg" viewBox="0 0 800 400" aria-hidden="true" preserveAspectRatio="none">
+      <rect class="loop" x="152" y="62" width="496" height="276" rx="40"/>
+      <path class="chev" d="M-9 -10 L11 0 L-9 10z" transform="translate(400 62)"/>
+      <path class="chev" d="M-9 -10 L11 0 L-9 10z" transform="translate(648 200) rotate(90)"/>
+      <path class="chev" d="M-9 -10 L11 0 L-9 10z" transform="translate(400 338) rotate(180)"/>
+      <path class="chev" d="M-9 -10 L11 0 L-9 10z" transform="translate(152 200) rotate(270)"/>
+    </svg>
     <div class="st s1"><span class="no">1</span><p>人間がアイデアを出す<br><span class="small">（どの切り口で探すか）</span></p></div>
-    <div class="ar a12" aria-hidden="true"><span class="dk">→</span><span class="mb">↓</span></div>
     <div class="st s2"><span class="no">2</span><p>AIがツールを作る</p></div>
-    <div class="ar a41" aria-hidden="true"><span class="dk">↑</span><span class="mb">↩ 1に戻る</span></div>
-    <div class="ctr" aria-hidden="true">くり返す</div>
-    <div class="ar a23" aria-hidden="true"><span class="dk">↓</span><span class="mb">↓</span></div>
-    <div class="st s4"><span class="no">4</span><p>AIが出品し、結果が返ってくる<br><span class="small">（1に戻る）</span></p></div>
-    <div class="ar a34" aria-hidden="true"><span class="dk">←</span><span class="mb">↓</span></div>
     <div class="st s3"><span class="no">3</span><p>ツールから得られた物を人間も見て、AIにフィードバックする</p></div>
+    <div class="st s4"><span class="no">4</span><p>AIが出品し、結果が返ってくる<br><span class="small">（1に戻る）</span></p></div>
+    <div class="ctr" aria-hidden="true">くり返す</div>
+    <div class="back" aria-hidden="true">↩ 1に戻る</div>
   </div>
   <div class="note circle-note"><b>アイデアは人間が出し、ツールはAIが作る。ツールから得られた物を人間も見て、AIにフィードバックする。このサークルを作ることが大切です。</b></div>
 </section>
 
-<section id="support">
+<section id="support" class="rv">
+  <div class="secno">03</div>
   <h2>メインを支えるもの</h2>
   <div class="two">
-    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="mcp" data-title="自作MCP"><h3>自作MCP</h3><p>MCP（AIが外のサービスを直接使うための接続口）。eBayのAPIを使う5つ：出品・注文・メッセージ・評価・配送ポリシー。EAGLEのAPIはスキルの手順の中で使います。</p><span class="hint">クリックで詳しく</span></div>
-    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ext" data-title="Chrome拡張機能（ブラウザに足す小さな道具）"><h3>Chrome拡張機能（ブラウザに足す小さな道具）</h3><p>仕入れ先の商品の取り込み、カテゴリ探し、除外国の管理、関税書類の作成 など。元のファイルごと渡します。</p><span class="hint">クリックで詳しく</span></div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="mcp" data-title="自作MCP"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg></span><h3>自作MCP</h3><p>AIが外のサービスを直接使うための接続口</p><span class="hint">クリックで詳しく</span><div class="full"><p>MCP（AIが外のサービスを直接使うための接続口）。eBayのAPIを使う5つ：出品・注文・メッセージ・評価・配送ポリシー。EAGLEのAPIはスキルの手順の中で使います。</p></div></div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ext" data-title="Chrome拡張機能（ブラウザに足す小さな道具）"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-puzzle"/></svg></span><h3>Chrome拡張機能<small>（ブラウザに足す小さな道具）</small></h3><p>元のファイルごと渡します。</p><span class="hint">クリックで詳しく</span><div class="full"><p>仕入れ先の商品の取り込み、カテゴリ探し、除外国の管理、関税書類の作成 など。元のファイルごと渡します。</p></div></div>
   </div>
 </section>
 
-<section id="finish">
+<section id="finish" class="rv">
+  <div class="secno">04</div>
   <h2>あなたのAIと着地点</h2>
   <div class="arrow"><div class="shaft"></div><div class="lab">全部まとめて渡す</div><div class="head"></div></div>
   <div class="layer"><span class="lbl">あなたのAI</span>
     <div class="you">
       <h3>あなたのAIが、こう変わります</h3>
       <ol>
-        <li><b>最初から使える</b><br>1から調べなくても、同じことをすぐ実行できます。</li>
-        <li><b>考え方と根拠がわかる</b><br>過程の記録を読ませるので、なぜそうするのかをAIが知っています。</li>
-        <li><b>自分用に作り変えられる</b><br>元のファイルなので、AIに頼んで自分の商品・仕入れ先に合わせられます。</li>
+        <li><b>最初から使える</b>1から調べなくても、同じことをすぐ実行できます。</li>
+        <li><b>考え方と根拠がわかる</b>過程の記録を読ませるので、なぜそうするのかをAIが知っています。</li>
+        <li><b>自分用に作り変えられる</b>元のファイルなので、AIに頼んで自分の商品・仕入れ先に合わせられます。</li>
       </ol>
     </div>
   </div>
@@ -254,30 +458,30 @@ nav ul{flex:1 1 auto;min-width:0;margin:0}
     <div class="goal">
       <h3>着地点：AIが24時間、あなたの代わりに働く</h3>
       <div class="two">
-        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g1" data-title="1. 自動で出品"><h3>1. 自動で出品</h3><p>メインの3つを組み合わせて、仕入れ先の商品からeBayへの出品までをAIが進めます。</p><span class="hint">クリックで詳しく</span></div>
-        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g2" data-title="2. 24時間動く"><h3>2. 24時間動く</h3><p>パソコンを止めずに、AIが夜も出品を続けます。決まった時刻に仕事を始めさせる「スケジュール機能」を使います。</p><span class="hint">クリックで詳しく</span></div>
-        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g3" data-title="3. 外出先から指示"><h3>3. 外出先から指示</h3><p>携帯から自宅のパソコンのAIに指示を出せます。</p><span class="hint">クリックで詳しく</span></div>
-        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g4" data-title="4. 問題を解決"><h3>4. 問題を解決</h3><p>エラーや困りごとが起きても、記録を知っているAIが原因を調べて直します。</p><span class="hint">クリックで詳しく</span></div>
+        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g1" data-title="1. 自動で出品"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-upload"/></svg></span><h3><span class="gn">1.</span>自動で出品</h3><p>仕入れ先の商品からeBayへの出品まで</p><span class="hint">クリックで詳しく</span></div>
+        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g2" data-title="2. 24時間動く"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg></span><h3><span class="gn">2.</span>24時間動く</h3><p>パソコンを止めずに、夜も出品を続けます。</p><span class="hint">クリックで詳しく</span></div>
+        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g3" data-title="3. 外出先から指示"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></span><h3><span class="gn">3.</span>外出先から指示</h3><p>携帯から自宅のパソコンのAIに指示を出せます。</p><span class="hint">クリックで詳しく</span></div>
+        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g4" data-title="4. 問題を解決"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg></span><h3><span class="gn">4.</span>問題を解決</h3><p>記録を知っているAIが原因を調べて直します。</p><span class="hint">クリックで詳しく</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="promise">
+<section id="promise" class="rv">
+  <div class="secno">05</div>
   <h2>受け取るときの約束</h2>
-  <div class="card">
-    <ul>
-      <li>eBayとEAGLEの鍵（キー）は、各自で用意して設定します。</li>
-      <li>eBayにはAPIでだけ触る、という安全の決まりも一緒に引き継ぎます。</li>
-    </ul>
+  <div class="promise">
+    <div class="pc"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></span><span class="tx">eBayとEAGLEの鍵（キー）は、各自で用意して設定します。</span></div>
+    <div class="pc"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span><span class="tx">eBayにはAPIでだけ触る、という安全の決まりも一緒に引き継ぎます。</span></div>
   </div>
 </section>
-<section id="record">
+<section id="record" class="rv">
+  <div class="secno">06</div>
   <h2>上記を実現するための補助として、私の2年間の開発も差し上げます</h2>
   <p>出品の結果や失敗を開発ログに残し、AIが読み返すことで、選び方の質が上がり続けます。</p>
   <div class="two">
-    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="log" data-title="2年間の開発の記録"><h3>2年間の開発の記録</h3><p>開発ログ（作業の日誌）・AIの記憶・引き継ぎ書。何を試し、何に失敗し、なぜそう決めたかが残っています。</p><p class="small">数百本の開発ログと記憶（渡す前に整理します）</p><span class="hint">クリックで詳しく</span></div>
-    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="place" data-title="記録の置き場（Obsidian＋GitHub）"><h3>記録の置き場（Obsidian＋GitHub）</h3><p>開発ログをためるノート（Obsidian：手元で書くノートのアプリ）と、変更の履歴を自動で残す保管場所（GitHub）。この設定も一緒に渡します。</p><span class="hint">クリックで詳しく</span></div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="log" data-title="2年間の開発の記録"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></span><h3>2年間の開発の記録</h3><p>何を試し、何に失敗し、なぜそう決めたかが残っています。</p><span class="hint">クリックで詳しく</span><div class="full"><p>開発ログ（作業の日誌）・AIの記憶・引き継ぎ書。何を試し、何に失敗し、なぜそう決めたかが残っています。</p><p class="small">数百本の開発ログと記憶（渡す前に整理します）</p></div></div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="place" data-title="記録の置き場（Obsidian＋GitHub）"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-folder"/></svg></span><h3>記録の置き場（Obsidian＋GitHub）</h3><p>この設定も一緒に渡します。</p><span class="hint">クリックで詳しく</span><div class="full"><p>開発ログをためるノート（Obsidian：手元で書くノートのアプリ）と、変更の履歴を自動で残す保管場所（GitHub）。この設定も一緒に渡します。</p></div></div>
   </div>
   <p class="cap">AIが考え方と根拠を知っているから、3つを正しく組み合わせられる</p>
 </section>
@@ -388,7 +592,7 @@ nav ul{flex:1 1 auto;min-width:0;margin:0}
 (function(){
 var root=document.documentElement,btn=document.getElementById('themebtn'),mq=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
 function cur(){var a=root.getAttribute('data-theme');if(a==='light'||a==='dark'){return a;}return(mq&&mq.matches)?'dark':'light';}
-function label(){btn.textContent=cur()==='dark'?'\u263E ダーク':'\u2600 ライト';}
+function label(){btn.textContent=cur()==='dark'?'☾ ダーク':'☀ ライト';}
 btn.addEventListener('click',function(){
   var n=cur()==='dark'?'light':'dark';
   root.setAttribute('data-theme',n);
@@ -406,7 +610,10 @@ function openIt(el){
   var tpl=document.getElementById('t-'+el.getAttribute('data-dlg'));
   if(!tpl||!d.showModal){return;}
   t.textContent=el.getAttribute('data-title');
-  b.innerHTML='';b.appendChild(tpl.content.cloneNode(true));
+  b.innerHTML='';
+  var full=el.querySelector('.full');
+  if(full){var intro=document.createElement('div');intro.className='intro';intro.innerHTML=full.innerHTML;b.appendChild(intro);}
+  b.appendChild(tpl.content.cloneNode(true));
   last=el;el.setAttribute('aria-expanded','true');
   document.documentElement.classList.add('lock');
   d.showModal();b.scrollTop=0;
@@ -422,6 +629,18 @@ d.addEventListener('close',function(){
   document.documentElement.classList.remove('lock');
   if(last){last.setAttribute('aria-expanded','false');last.focus();}
 });
+})();
+</script>
+<script>
+(function(){
+var rv=document.querySelectorAll('.rv');
+function all(){for(var i=0;i<rv.length;i++){rv[i].classList.add('in');}}
+if(!('IntersectionObserver' in window)){all();return;}
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:0.04,rootMargin:'0px 0px -5% 0px'});
+for(var i=0;i<rv.length;i++){io.observe(rv[i]);}
+setTimeout(function(){if(!document.hidden){/* safety: reveal anything above viewport bottom */}},0);
 })();
 </script>
 </body>
