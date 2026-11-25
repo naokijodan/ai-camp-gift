@@ -136,11 +136,33 @@ nav ul{flex:1 1 auto;min-width:0;margin:0}
 .quality p{margin:0 0 8px;font-size:15px;color:var(--surface)}
 .quality ul{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .quality li{margin:0;background:var(--surface);color:var(--text);border-radius:999px;padding:4px 14px;font-size:14px;font-weight:700;line-height:1.5}
+.chips{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{margin:0;background:var(--stage);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:14px}
+.chips li.etc{background:transparent;border-style:dashed;color:var(--muted)}
+.ring{display:grid;grid-template-columns:1fr 72px 1fr;gap:8px;align-items:center;margin:8px 0 16px}
+.ring .st{background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.ring .st p{margin:0;font-size:15px}
+.ring .no{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--surface);display:flex;align-items:center;justify-content:center;font-weight:700}
+.ring .ar{text-align:center;font-size:26px;font-weight:700;color:var(--accent);line-height:1}
+.ring .ar .mb{display:none}
+.ring .ctr{text-align:center;white-space:nowrap;font-size:13px;color:var(--muted);align-self:center}
+.ring .s1{grid-area:1/1}.ring .a12{grid-area:1/2}.ring .s2{grid-area:1/3}
+.ring .a41{grid-area:2/1}.ring .ctr{grid-area:2/2}.ring .a23{grid-area:2/3}
+.ring .s4{grid-area:3/1}.ring .a34{grid-area:3/2}.ring .s3{grid-area:3/3}
+@media (max-width:720px){
+  .ring{display:flex;flex-direction:column;gap:4px;align-items:stretch}
+  .ring>*{grid-area:auto}
+  .ring .s1{order:1}.ring .a12{order:2}.ring .s2{order:3}.ring .a23{order:4}.ring .s3{order:5}.ring .a34{order:6}.ring .s4{order:7}.ring .a41{order:8}
+  .ring .ctr{display:none}
+  .ring .ar .dk{display:none}.ring .ar .mb{display:inline;font-size:20px}
+}
+.circle-note{font-size:16px;border-width:2px}
 </style>
 </head>
 <body>
 <nav><ul>
 <li><a href="#main">メイン</a></li>
+<li><a href="#circle">キーワードの切り口</a></li>
 <li><a href="#support">支えるもの</a></li>
 <li><a href="#goal">着地点</a></li>
 <li><a href="#promise">受け取るときの約束</a></li>
@@ -179,6 +201,30 @@ nav ul{flex:1 1 auto;min-width:0;margin:0}
       <p>を選んで出品します。</p>
     </div>
   </div>
+</section>
+
+<section id="circle">
+  <h2>出品キーワードは、いろいろな切り口から</h2>
+  <p>何を出品するかの基準になるキーワードには、いろいろな切り口があります。元になるデータもさまざまです。</p>
+  <ul class="chips">
+    <li>テラピーク（eBayで売れた実績）</li>
+    <li>新商品ウォッチ（講師が作っている、新しく出る商品を見張る仕組み）</li>
+    <li>過去に売れた物</li>
+    <li>ウォッチや閲覧の多い物</li>
+    <li class="etc">など</li>
+  </ul>
+  <div class="ring">
+    <div class="st s1"><span class="no">1</span><p>人間がアイデアを出す<br><span class="small">（どの切り口で探すか）</span></p></div>
+    <div class="ar a12" aria-hidden="true"><span class="dk">→</span><span class="mb">↓</span></div>
+    <div class="st s2"><span class="no">2</span><p>AIがツールを作る</p></div>
+    <div class="ar a41" aria-hidden="true"><span class="dk">↑</span><span class="mb">↩ 1に戻る</span></div>
+    <div class="ctr" aria-hidden="true">くり返す</div>
+    <div class="ar a23" aria-hidden="true"><span class="dk">↓</span><span class="mb">↓</span></div>
+    <div class="st s4"><span class="no">4</span><p>AIが出品し、結果が返ってくる<br><span class="small">（1に戻る）</span></p></div>
+    <div class="ar a34" aria-hidden="true"><span class="dk">←</span><span class="mb">↓</span></div>
+    <div class="st s3"><span class="no">3</span><p>ツールから得られた物を人間も見て、AIにフィードバックする</p></div>
+  </div>
+  <div class="note circle-note"><b>アイデアは人間が出し、ツールはAIが作る。ツールから得られた物を人間も見て、AIにフィードバックする。このサークルを作ることが大切です。</b></div>
 </section>
 
 <section id="support">
