@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ja">
 <head>
+<script>try{var __t=localStorage.getItem("gift-theme");if(__t==="light"||__t==="dark"){document.documentElement.setAttribute("data-theme",__t);}}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>渡すものの全体図</title>
@@ -115,14 +116,35 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
 .ask{font-size:14px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:6px 12px;margin:0}
 .ask b{color:var(--accent)}
 html.lock{overflow:hidden}
+nav{display:flex;align-items:center}
+nav ul{flex:1 1 auto;min-width:0;margin:0}
+.themebtn{flex:none;margin:0 12px 0 0;min-height:36px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:var(--stage);color:var(--text);font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.themebtn:hover{border-color:var(--accent);color:var(--accent)}
+.themebtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.core{border:3px solid var(--accent);background:var(--accent-soft);border-radius:16px;padding:20px 18px;margin:8px 0 24px}
+.core h2{color:var(--accent);margin-top:0}
+.trio{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
+.trio .plus{align-self:center;font-size:28px;font-weight:700;color:var(--accent);text-align:center}
+.trio .box{background:var(--surface)}
+@media (max-width:720px){.trio{grid-template-columns:1fr}.trio .plus{line-height:1}}
+.result{background:var(--accent);border-radius:14px;padding:18px 20px;text-align:center}
+.result h3{margin:0 0 8px;font-size:clamp(22px,5vw,28px);color:var(--surface)}
+.result p{margin:0;color:var(--surface);font-size:16px}
+.cap{font-size:14px;color:var(--muted);margin:6px 0 14px}
+.quality{margin-top:16px;padding-top:14px;border-top:1px solid var(--surface)}
+.quality h4{margin:0 0 6px;font-size:17px;color:var(--surface)}
+.quality p{margin:0 0 8px;font-size:15px;color:var(--surface)}
+.quality ul{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.quality li{margin:0;background:var(--surface);color:var(--text);border-radius:999px;padding:4px 14px;font-size:14px;font-weight:700;line-height:1.5}
 </style>
 </head>
 <body>
 <nav><ul>
-<li><a href="#map">全体図</a></li>
+<li><a href="#main">メイン</a></li>
+<li><a href="#support">支えるもの</a></li>
 <li><a href="#goal">着地点</a></li>
 <li><a href="#promise">受け取るときの約束</a></li>
-</ul></nav>
+</ul><button type="button" class="themebtn" id="themebtn" aria-label="表示の明るさを切り替え"></button></nav>
 <div class="wrap">
 <header class="hero">
   <span class="tag">eBay完全自動化AI合宿 ／ 配布資料</span>
@@ -130,37 +152,47 @@ html.lock{overflow:hidden}
   <p class="sub">渡すものの全体図</p>
 </header>
 
-<section id="map">
-  <h2>渡すものの全体図</h2>
+<section id="main" class="core">
+  <h2>メイン：3つを組み合わせて、質の高い自動出品</h2>
   <p class="maphint">枠をクリック（タップ）すると、詳しい内容が開きます。</p>
-
-  <div class="layer"><span class="lbl">土台</span>
-    <div class="two">
-      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="skill" data-title="AIのスキル"><h3>AIのスキル</h3><p>翻訳、自動出品、問い合わせ返信、評価へのお礼返信、クーポン配信、見られていない出品の洗い出し など、eBayの仕事をAIに任せる手順書です。</p><span class="hint">クリックで詳しく</span></div>
-      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="log" data-title="2年間の開発の記録"><h3>2年間の開発の記録</h3><p>開発ログ（作業の日誌）・AIの記憶・引き継ぎ書。何を試し、何に失敗し、なぜそう決めたかが残っています。</p><p class="small">数百本の開発ログと記憶（渡す前に整理します）</p><span class="hint">クリックで詳しく</span></div>
+  <div class="trio">
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="skill" data-title="AIのスキル"><h3>AIのスキル</h3><p>翻訳、自動出品、問い合わせ返信、評価へのお礼返信、クーポン配信、見られていない出品の洗い出し など、eBayの仕事をAIに任せる手順書です。</p><span class="hint">クリックで詳しく</span></div>
+    <div class="plus" aria-hidden="true">＋</div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ebay" data-title="eBayのAPI"><h3>eBayのAPI</h3><p>出品・注文・メッセージ・配送ポリシー・評価・販売促進・数字の確認 など10分野</p><span class="hint">クリックで詳しく</span></div>
+    <div class="plus" aria-hidden="true">＋</div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="eagle" data-title="EAGLEのAPI"><h3>EAGLEのAPI</h3><p>一括登録・仕入れ先などの一括更新・その結果の確認・商品一覧・テンプレートとポリシーの一覧</p><span class="hint">クリックで詳しく</span></div>
+  </div>
+  <div class="arrow"><div class="shaft"></div><div class="head"></div></div>
+  <div class="result">
+    <h3>質の高い自動出品</h3>
+    <p>スキルが手順と判断を、eBayのAPIが出品と確認を、EAGLEのAPIが登録と在庫・仕入れ先の管理を受け持ちます。</p>
+    <div class="quality">
+      <h4>質が高いとは</h4>
+      <p>何でもかんでも出品するのではなく、</p>
+      <ul>
+        <li>自分のアカウントと相性の良い物</li>
+        <li>自分が選びやすいパターンの物</li>
+        <li>過去に売れた物から広げた物</li>
+        <li>ウォッチや閲覧の多い物から広げた物</li>
+      </ul>
+      <p>を選んで出品します。</p>
     </div>
   </div>
+</section>
 
-  <div class="arrow"><div class="shaft"></div><div class="lab">これがあるから使いこなせる</div><div class="head"></div></div>
-
-  <div class="layer"><span class="lbl">活用</span>
-    <div class="two">
-      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ebay" data-title="eBayのAPI"><h3>eBayのAPI</h3><p>出品・注文・メッセージ・配送ポリシー・評価・販売促進・数字の確認 など10分野</p><p class="small">詳しくは別紙『eBayのAPIでできること』</p><span class="hint">クリックで詳しく</span></div>
-      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="eagle" data-title="EAGLEのAPI"><h3>EAGLEのAPI</h3><p>一括登録・仕入れ先などの一括更新・その結果の確認・商品一覧・テンプレートとポリシーの一覧</p><p class="small">詳しくは別紙『EAGLEのAPIでできること』</p><span class="hint">クリックで詳しく</span></div>
-    </div>
+<section id="support">
+  <h2>メインを支えるもの</h2>
+  <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="log" data-title="2年間の開発の記録"><h3>2年間の開発の記録</h3><p>開発ログ（作業の日誌）・AIの記憶・引き継ぎ書。何を試し、何に失敗し、なぜそう決めたかが残っています。</p><p class="small">数百本の開発ログと記憶（渡す前に整理します）</p><span class="hint">クリックで詳しく</span></div>
+  <p class="cap">AIが考え方と根拠を知っているから、3つを正しく組み合わせられる</p>
+  <div class="two">
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="mcp" data-title="自作MCP"><h3>自作MCP</h3><p>MCP（AIが外のサービスを直接使うための接続口）。eBayのAPIを使う5つ：出品・注文・メッセージ・評価・配送ポリシー。EAGLEのAPIはスキルの手順の中で使います。</p><span class="hint">クリックで詳しく</span></div>
+    <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ext" data-title="Chrome拡張機能（ブラウザに足す小さな道具）"><h3>Chrome拡張機能（ブラウザに足す小さな道具）</h3><p>仕入れ先の商品の取り込み、カテゴリ探し、除外国の管理、関税書類の作成 など。元のファイルごと渡します。</p><span class="hint">クリックで詳しく</span></div>
   </div>
+</section>
 
-  <div class="arrow"><div class="shaft"></div><div class="lab">形にした道具</div><div class="head"></div></div>
-
-  <div class="layer"><span class="lbl">道具</span>
-    <div class="two">
-      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="mcp" data-title="自作MCP"><h3>自作MCP</h3><p>MCP（AIが外のサービスを直接使うための接続口）。eBayのAPIを使う5つ：出品・注文・メッセージ・評価・配送ポリシー。EAGLEのAPIはスキルの手順の中で使います。</p><span class="hint">クリックで詳しく</span></div>
-      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ext" data-title="Chrome拡張機能（ブラウザに足す小さな道具）"><h3>Chrome拡張機能（ブラウザに足す小さな道具）</h3><p>仕入れ先の商品の取り込み、カテゴリ探し、除外国の管理、関税書類の作成 など。元のファイルごと渡します。</p><span class="hint">クリックで詳しく</span></div>
-    </div>
-  </div>
-
+<section id="finish">
+  <h2>あなたのAIと着地点</h2>
   <div class="arrow"><div class="shaft"></div><div class="lab">全部まとめて渡す</div><div class="head"></div></div>
-
   <div class="layer"><span class="lbl">あなたのAI</span>
     <div class="you">
       <h3>あなたのAIが、こう変わります</h3>
@@ -177,7 +209,7 @@ html.lock{overflow:hidden}
     <div class="goal">
       <h3>着地点：AIが24時間、あなたの代わりに働く</h3>
       <div class="two">
-        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g1" data-title="1. 自動で出品"><h3>1. 自動で出品</h3><p>土台の道具を使って、仕入れ先の商品からeBayへの出品までをAIが進めます。</p><span class="hint">クリックで詳しく</span></div>
+        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g1" data-title="1. 自動で出品"><h3>1. 自動で出品</h3><p>メインの3つを組み合わせて、仕入れ先の商品からeBayへの出品までをAIが進めます。</p><span class="hint">クリックで詳しく</span></div>
         <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g2" data-title="2. 24時間動く"><h3>2. 24時間動く</h3><p>パソコンを止めずに、AIが夜も出品を続けます。決まった時刻に仕事を始めさせる「スケジュール機能」を使います。</p><span class="hint">クリックで詳しく</span></div>
         <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g3" data-title="3. 外出先から指示"><h3>3. 外出先から指示</h3><p>携帯から自宅のパソコンのAIに指示を出せます。</p><span class="hint">クリックで詳しく</span></div>
         <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g4" data-title="4. 問題を解決"><h3>4. 問題を解決</h3><p>エラーや困りごとが起きても、記録を知っているAIが原因を調べて直します。</p><span class="hint">クリックで詳しく</span></div>
@@ -289,7 +321,7 @@ html.lock{overflow:hidden}
   <div class="note"><b>必要なもの</b><br>EAGLEのAPIを使うには、EAGLEのアカウントとAPIの鍵（各自のもの）が必要です。</div>
 </template>
 <template id="t-log"><p>次の3つです。どれも、何を試したか・何に失敗したか・なぜそう決めたか、が分かるように残してあります。</p><div class="tool"><h4>開発ログ（作業の日誌）</h4><p>日付ごとに、やったこと・試したこと・失敗したこと・決めた理由を書き残した日誌です。</p></div><div class="tool"><h4>AIの記憶</h4><p>AIが次の作業でも覚えておく、決まりや教訓です。失敗から学んだことと、その理由が書いてあります。</p></div><div class="tool"><h4>引き継ぎ書</h4><p>作業の続きを、次の人（次のAI）が引き継げるように、今の状態と次にやることをまとめたメモです。</p></div><p>これをAIに読ませると、AIは「なぜそうするのか」という考え方と根拠が分かるようになります。</p><p class="small">渡す前に、整理します。</p></template>
-<template id="t-g1"><p>土台の道具を使って、仕入れ先の商品からeBayへの出品までをAIが進めます。</p><h3 class="grp">関係する道具</h3><p>自動出品・とりこみ君・ebay-translation・final-check（EAGLE登録まで）</p></template>
+<template id="t-g1"><p>メインの3つを組み合わせて、仕入れ先の商品からeBayへの出品までをAIが進めます。</p><h3 class="grp">関係する道具</h3><p>自動出品・とりこみ君・ebay-translation・final-check（EAGLE登録まで）</p></template>
 <template id="t-g2"><p>パソコンを止めずに、AIが夜も出品を続けます。決まった時刻に仕事を始めさせる「スケジュール機能」を使います。</p><h3 class="grp">関係する道具</h3><p>スケジュール機能</p><p>24時間回すなら、スケジュール機能（決まった時刻にAIに仕事を始めさせる機能）を活用します。</p></template>
 <template id="t-g3"><p>携帯から自宅のパソコンのAIに指示を出せます。</p></template>
 <template id="t-g4"><p>エラーや困りごとが起きても、記録を知っているAIが原因を調べて直します。</p><h3 class="grp">関係する道具</h3><p>2年間の開発の記録・eBayエラーしらべる君</p></template>
@@ -297,6 +329,21 @@ html.lock{overflow:hidden}
 <div class="dhead"><h2 id="dtitle"></h2><button type="button" class="dclose" id="dclose" aria-label="閉じる">閉じる</button></div>
 <div class="dbody" id="dbody"></div>
 </dialog>
+<script>
+(function(){
+var root=document.documentElement,btn=document.getElementById('themebtn'),mq=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+function cur(){var a=root.getAttribute('data-theme');if(a==='light'||a==='dark'){return a;}return(mq&&mq.matches)?'dark':'light';}
+function label(){btn.textContent=cur()==='dark'?'\u263E ダーク':'\u2600 ライト';}
+btn.addEventListener('click',function(){
+  var n=cur()==='dark'?'light':'dark';
+  root.setAttribute('data-theme',n);
+  try{localStorage.setItem('gift-theme',n);}catch(e){}
+  label();
+});
+if(mq&&mq.addEventListener){mq.addEventListener('change',label);}
+label();
+})();
+</script>
 <script>
 (function(){
 var d=document.getElementById('dlg'),t=document.getElementById('dtitle'),b=document.getElementById('dbody'),last=null;
