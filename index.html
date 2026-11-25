@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>渡すものの全体図</title>
+<style>
+:root{
+  --bg:#f7f6f2; --surface:#ffffff; --text:#22262b; --muted:#5e666f; --line:#dedbd2;
+  --accent:#2f6f5e; --accent-soft:#e3f0eb;
+  --safe:#b3261e; --safe-soft:#fdeceb;
+  --warn:#8a5a00; --warn-soft:#fff3d6;
+  --stage:#eef2f6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181b; --surface:#1e2226; --text:#e8e9ea; --muted:#a3abb3; --line:#363c42;
+    --accent:#6cc4a8; --accent-soft:#1d3029;
+    --safe:#ff8a80; --safe-soft:#3a1f1e;
+    --warn:#f2c36b; --warn-soft:#3a2f15;
+    --stage:#232a31;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181b; --surface:#1e2226; --text:#e8e9ea; --muted:#a3abb3; --line:#363c42;
+  --accent:#6cc4a8; --accent-soft:#1d3029;
+  --safe:#ff8a80; --safe-soft:#3a1f1e;
+  --warn:#f2c36b; --warn-soft:#3a2f15;
+  --stage:#232a31;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  line-height:1.8;font-size:16px;-webkit-text-size-adjust:100%;overflow-wrap:anywhere}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+nav{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--line)}
+nav ul{list-style:none;margin:0 auto;padding:8px 16px;max-width:900px;display:flex;gap:6px;overflow-x:auto;white-space:nowrap}
+nav a{display:block;padding:4px 10px;border-radius:999px;font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--line)}
+nav a:hover{color:var(--accent);border-color:var(--accent)}
+.hero{padding:40px 0 28px}
+.hero .tag{display:inline-block;font-size:13px;color:var(--accent);background:var(--accent-soft);padding:2px 12px;border-radius:999px;margin-bottom:12px}
+h1{font-size:clamp(26px,6vw,40px);line-height:1.35;margin:0 0 12px}
+.hero p{font-size:17px;color:var(--muted);margin:0 0 10px}
+section{padding:28px 0;border-top:1px solid var(--line)}
+h2{font-size:24px;margin:0 0 16px;line-height:1.4}
+h3{font-size:18px;margin:20px 0 8px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 12px;padding-left:1.4em}
+li{margin-bottom:4px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.card h3{margin-top:0}
+.note{border-radius:10px;padding:12px 16px;margin:12px 0;font-size:15px;background:var(--accent-soft);border:1px solid var(--accent)}
+.note.warn{background:var(--warn-soft);border:1px solid var(--warn)}
+.note.warn b{color:var(--warn)}
+.note.no{background:var(--safe-soft);border:1px solid var(--safe)}
+.note.no b{color:var(--safe)}
+.pill{display:inline-block;font-size:13px;background:var(--stage);border:1px solid var(--line);border-radius:999px;padding:0 10px;margin:2px 2px 2px 0}
+.pill.use{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:700}
+.tw{border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{background:var(--stage);font-size:13px;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td.area{font-weight:700;white-space:nowrap}
+.small{font-size:13px;color:var(--muted)}
+@media (max-width:720px){
+  table,thead,tbody,tr,td,th{display:block;width:100%}
+  thead{display:none}
+  tr{padding:10px 14px;border-bottom:1px solid var(--line)}
+  tr:last-child{border-bottom:0}
+  td{border:0;padding:3px 0}
+  td.area{white-space:normal;font-size:17px;color:var(--accent)}
+  td[data-l]::before{content:attr(data-l);display:block;font-size:12px;color:var(--muted);margin-top:4px}
+}
+footer{padding:24px 0 48px;color:var(--muted);font-size:13px}
+
+.hero p.sub{font-size:20px;color:var(--text);font-weight:700}
+.layer{margin:0 0 4px}
+.layer .lbl{display:inline-block;font-size:13px;color:var(--accent);background:var(--accent-soft);padding:2px 12px;border-radius:999px;margin-bottom:8px;font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:720px){.two{grid-template-columns:1fr}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.box h3{margin:0 0 6px;font-size:17px}
+.box p{margin:0 0 6px;font-size:15px}
+.arrow{text-align:center;margin:10px 0}
+.arrow .shaft{width:2px;height:16px;background:var(--accent);margin:0 auto}
+.arrow .lab{display:inline-block;font-size:14px;font-weight:700;color:var(--accent);padding:2px 12px}
+.arrow .head{width:0;height:0;margin:0 auto;border-left:10px solid transparent;border-right:10px solid transparent;border-top:12px solid var(--accent)}
+.you{border:2px solid var(--accent);background:var(--accent-soft);border-radius:14px;padding:18px 20px}
+.you h3{margin:0 0 10px;color:var(--accent);font-size:20px}
+.you ol{margin:0;padding-left:1.4em}
+.you li{margin-bottom:8px}
+.goal{border:2px solid var(--accent);background:var(--accent-soft);border-radius:14px;padding:18px 20px}
+.goal h3{margin:0 0 12px;color:var(--accent);font-size:20px}
+.goal .box h3{font-size:17px;color:var(--text);margin:0 0 6px}
+
+.click{cursor:pointer;position:relative}
+.click:hover{border-color:var(--accent)}
+.click:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hint{display:inline-block;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:0 10px;margin-top:4px}
+.maphint{font-size:14px;color:var(--muted);margin:0 0 12px}
+dialog{width:min(860px,calc(100vw - 24px));max-width:calc(100vw - 24px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--text)}
+dialog[open]{display:flex;flex-direction:column}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.dhead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px 10px 18px;background:var(--surface);border-bottom:1px solid var(--line);flex:none}
+.dhead h2{margin:0;font-size:18px}
+.dclose{flex:none;min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--stage);color:var(--text);font-size:15px;cursor:pointer;padding:0 12px}
+.dclose:focus-visible{outline:3px solid var(--accent)}
+.dbody{overflow-y:auto;overflow-x:hidden;padding:14px 18px 22px;-webkit-overflow-scrolling:touch}
+.dbody h3.grp{font-size:17px;margin:18px 0 8px;color:var(--accent)}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:12px}
+.tool h4{margin:0 0 6px;font-size:17px}
+.tool p{margin:0 0 8px;font-size:15px}
+.ask{font-size:14px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:6px 12px;margin:0}
+.ask b{color:var(--accent)}
+html.lock{overflow:hidden}
+</style>
+</head>
+<body>
+<nav><ul>
+<li><a href="#map">全体図</a></li>
+<li><a href="#goal">着地点</a></li>
+<li><a href="#promise">受け取るときの約束</a></li>
+</ul></nav>
+<div class="wrap">
+<header class="hero">
+  <span class="tag">eBay完全自動化AI合宿 ／ 配布資料</span>
+  <h1>私の2年間を、あなたにあげます</h1>
+  <p class="sub">渡すものの全体図</p>
+</header>
+
+<section id="map">
+  <h2>渡すものの全体図</h2>
+  <p class="maphint">枠をクリック（タップ）すると、詳しい内容が開きます。</p>
+
+  <div class="layer"><span class="lbl">土台</span>
+    <div class="two">
+      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="skill" data-title="AIのスキル"><h3>AIのスキル</h3><p>翻訳、自動出品、問い合わせ返信、評価へのお礼返信、クーポン配信、見られていない出品の洗い出し など、eBayの仕事をAIに任せる手順書です。</p><span class="hint">クリックで詳しく</span></div>
+      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="log" data-title="2年間の開発の記録"><h3>2年間の開発の記録</h3><p>開発ログ（作業の日誌）・AIの記憶・引き継ぎ書。何を試し、何に失敗し、なぜそう決めたかが残っています。</p><p class="small">数百本の開発ログと記憶（渡す前に整理します）</p><span class="hint">クリックで詳しく</span></div>
+    </div>
+  </div>
+
+  <div class="arrow"><div class="shaft"></div><div class="lab">これがあるから使いこなせる</div><div class="head"></div></div>
+
+  <div class="layer"><span class="lbl">活用</span>
+    <div class="two">
+      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ebay" data-title="eBayのAPI"><h3>eBayのAPI</h3><p>出品・注文・メッセージ・配送ポリシー・評価・販売促進・数字の確認 など10分野</p><p class="small">詳しくは別紙『eBayのAPIでできること』</p><span class="hint">クリックで詳しく</span></div>
+      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="eagle" data-title="EAGLEのAPI"><h3>EAGLEのAPI</h3><p>一括登録・仕入れ先などの一括更新・その結果の確認・商品一覧・テンプレートとポリシーの一覧</p><p class="small">詳しくは別紙『EAGLEのAPIでできること』</p><span class="hint">クリックで詳しく</span></div>
+    </div>
+  </div>
+
+  <div class="arrow"><div class="shaft"></div><div class="lab">形にした道具</div><div class="head"></div></div>
+
+  <div class="layer"><span class="lbl">道具</span>
+    <div class="two">
+      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="mcp" data-title="自作MCP"><h3>自作MCP</h3><p>MCP（AIが外のサービスを直接使うための接続口）。eBayのAPIを使う5つ：出品・注文・メッセージ・評価・配送ポリシー。EAGLEのAPIはスキルの手順の中で使います。</p><span class="hint">クリックで詳しく</span></div>
+      <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ext" data-title="Chrome拡張機能（ブラウザに足す小さな道具）"><h3>Chrome拡張機能（ブラウザに足す小さな道具）</h3><p>仕入れ先の商品の取り込み、カテゴリ探し、除外国の管理、関税書類の作成 など。元のファイルごと渡します。</p><span class="hint">クリックで詳しく</span></div>
+    </div>
+  </div>
+
+  <div class="arrow"><div class="shaft"></div><div class="lab">全部まとめて渡す</div><div class="head"></div></div>
+
+  <div class="layer"><span class="lbl">あなたのAI</span>
+    <div class="you">
+      <h3>あなたのAIが、こう変わります</h3>
+      <ol>
+        <li><b>最初から使える</b><br>1から調べなくても、同じことをすぐ実行できます。</li>
+        <li><b>考え方と根拠がわかる</b><br>過程の記録を読ませるので、なぜそうするのかをAIが知っています。</li>
+        <li><b>自分用に作り変えられる</b><br>元のファイルなので、AIに頼んで自分の商品・仕入れ先に合わせられます。</li>
+      </ol>
+    </div>
+  </div>
+  <div class="arrow"><div class="shaft"></div><div class="lab">その先に</div><div class="head"></div></div>
+
+  <div class="layer" id="goal"><span class="lbl">着地点</span>
+    <div class="goal">
+      <h3>着地点：AIが24時間、あなたの代わりに働く</h3>
+      <div class="two">
+        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g1" data-title="1. 自動で出品"><h3>1. 自動で出品</h3><p>土台の道具を使って、仕入れ先の商品からeBayへの出品までをAIが進めます。</p><span class="hint">クリックで詳しく</span></div>
+        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g2" data-title="2. 24時間動く"><h3>2. 24時間動く</h3><p>パソコンを止めずに、AIが夜も出品を続けます。決まった時刻に仕事を始めさせる「スケジュール機能」を使います。</p><span class="hint">クリックで詳しく</span></div>
+        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g3" data-title="3. 外出先から指示"><h3>3. 外出先から指示</h3><p>携帯から自宅のパソコンのAIに指示を出せます。</p><span class="hint">クリックで詳しく</span></div>
+        <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="g4" data-title="4. 問題を解決"><h3>4. 問題を解決</h3><p>エラーや困りごとが起きても、記録を知っているAIが原因を調べて直します。</p><span class="hint">クリックで詳しく</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="promise">
+  <h2>受け取るときの約束</h2>
+  <div class="card">
+    <ul>
+      <li>eBayとEAGLEの鍵（キー）は、各自で用意して設定します。</li>
+      <li>eBayにはAPIでだけ触る、という安全の決まりも一緒に引き継ぎます。</li>
+    </ul>
+  </div>
+</section>
+<footer>渡す前に、名前・アカウント・鍵・別の事業の物を取り除いて整理します。</footer>
+</div>
+<template id="t-skill"><h3 class="grp">仕入れ候補の取り込み・判定（自動出品）</h3><div class="tool"><h4>自動出品</h4><p><span class="pill use">スキル</span></p><p>メルカリ（個人出品・メルカリShops）・ヤフオク・PayPayフリマ・ラクマなどの検索結果から商品ページを開き、カテゴリ別の条件で判定して、合格した商品だけをスプレッドシートの「インポート用」へ送ります。関門ごとに承認を取りながら進み、承認するまで何も実行しません。翻訳・EAGLE登録は別の工程です。</p><p class="ask"><b>頼み方の例：</b>「自動出品して」</p></div><h3 class="grp">翻訳・出品データ作り</h3><div class="tool"><h4>ebay-translation（翻訳）</h4><p><span class="pill use">スキル</span></p><p>メルカリ・ヤフオク・ハードオフ・メルカリShopsの仕入れ行を、英語のタイトル・商品説明・Item Specifics（ブランド・サイズなど商品の詳細項目）・タグ・カテゴリIDにして、スプレッドシートへ書き戻します。一括シートの指示文で呼ばれたときは、作業シートへの貼り付けとEAGLEへの一括登録まで進めます。</p><p class="ask"><b>頼み方の例：</b>「ebay-translation を実行して」</p></div><div class="tool"><h4>ebay-motors-translation（モータース翻訳）</h4><p><span class="pill use">スキル</span></p><p>車・バイク・ボート・RVなどの部品とアクセサリーを、eBay Motors向けの英語のタイトル・商品説明・Item Specifics・タグ・カテゴリIDにして、スプレッドシートへ書きます。対応車種表（フィットメント）は作りません。</p><p class="ask"><b>頼み方の例：</b>「ebay-motors-translation を実行して」</p></div><div class="tool"><h4>final-check（最終チェック）</h4><p><span class="pill use">スキル</span></p><p>翻訳で書き込んだ「v5インポート」シートを、1行ずつ実際のセルで見直して、問題があれば直し、結果を報告します。列のずれ、タイトルの文字数、誇張表現、禁止ワード、日本語の混入、タグ・カテゴリの食い違いなどを確認します。</p><p class="ask"><b>頼み方の例：</b>「最終チェック」</p></div><div class="tool"><h4>relisting-import（再出品の取り込み）</h4><p><span class="pill use">スキル</span></p><p>再出品用の古いファイル（CSV・xlsx）の形式を判定して、形式に合ったシート（「インポート用」または「v5インポート」）へ転記します。英語の再作成はしません。</p><p class="ask"><b>頼み方の例：</b>「再出品実行」</p></div><div class="tool"><h4>relisting-translation（再出品の翻訳）</h4><p><span class="pill use">スキル</span></p><p>一度出して売れなかった商品の出し直し用に、タイトルを前回と別のものに作り直します。コンディション・Item Specifics・カテゴリ・タグも見直して「v5インポート」へ書きます。</p><p class="ask"><b>頼み方の例：</b>「再出品翻訳」</p></div><h3 class="grp">問い合わせ・評価・クーポン</h3><div class="tool"><h4>ebay-inbox-reply（受信箱チェック）</h4><p><span class="pill use">スキル</span></p><p>受信箱を見て、まだ返信していない買い手のメッセージを一覧にし、日本語の要約と、英語の返信案（日本語訳つき）を作ります。あなたが1件ずつ承認したものだけを送信します。返品・破損・未着・返金・キャンセルなどは「要注意」として、返信案を作るだけで送りません。</p><p class="ask"><b>頼み方の例：</b>「問い合わせチェック／メッセージ確認／受信箱チェック」</p></div><div class="tool"><h4>ebay-feedback-reply（評価へのお礼返信）</h4><p><span class="pill use">スキル</span></p><p>好意的な評価のうち、まだ返信していないものにお礼の返信を送ります。対象は好評価だけで、不満や欠点が書かれている評価、普通・悪い評価には送らず、報告だけにします。</p><p class="ask"><b>頼み方の例：</b>「フィードバック返信／評価に返信／お礼返信」</p></div><div class="tool"><h4>ebay-send-coupon（センドクーポン）</h4><p><span class="pill use">スキル</span></p><p>eBayでクーポンを作り、過去に買った人などにストアのメールキャンペーンで案内します。メールは送信すると取り消せないため、内容も送信も必ずあなたの承認を得てから実行します。割引率や対象商品を、承認なしには決めません。</p><p class="ask"><b>頼み方の例：</b>「センドクーポン／クーポン送信／クーポンを送って」</p></div><h3 class="grp">アカウントの見直し</h3><div class="tool"><h4>ebay-stale-listings（見られていない出品の洗い出し）</h4><p><span class="pill use">スキル</span></p><p>30日以上前に出品し、直近30日の閲覧数が0で、ウォッチ（お気に入り）も0の出品を一覧にします。ジャンル分け、次の自動更新日の計算、「残す／削除候補／要判断」の判定をして、CSVに出力します。読み取り専用で、出品の終了・変更・再出品はしません。</p><p class="ask"><b>頼み方の例：</b>「閲覧ゼロ洗い出し／見られていない出品／ウォッチ0」</p></div></template>
+<template id="t-mcp"><h3 class="grp">出品後の確認と修正</h3><div class="tool"><h4>listings（出品の確認）</h4><p><span class="pill use">MCP（AIが外のサービスを直接使うための接続口）</span></p><p>出品中の商品の一覧・個別の詳細・タイトルのキーワード検索・ポリシーごとの商品の抽出ができます（読み取り専用）。そのほか、セラーの健全性（Top Ratedなどの評価）、クレーム率、オファーを送れる商品の一覧、ストア情報、過去の売上取引の一覧も確認できます。</p></div><h3 class="grp">問い合わせ・評価・クーポン</h3><div class="tool"><h4>messages（受信箱）</h4><p><span class="pill use">MCP（AIが外のサービスを直接使うための接続口）</span></p><p>eBayの受信箱の一覧と本文を読み、返信できます。確認を付けない実行はプレビューだけで送信せず、確認したときに1回だけ送信します。</p></div><div class="tool"><h4>feedback（評価の確認）</h4><p><span class="pill use">MCP（AIが外のサービスを直接使うための接続口）</span></p><p>届いた評価（フィードバック）の一覧と、評価点・好評率・期間別の件数のまとめを読み取れます。</p></div><h3 class="grp">配送ポリシー・送料・除外国</h3><div class="tool"><h4>shipping-policy（配送ポリシーの管理）</h4><p><span class="pill use">MCP（AIが外のサービスを直接使うための接続口）</span></p><p>発送ポリシーの一覧の取得、複製、削除、除外国の確認と一括更新、送料の変更、配送サービス（送料のレーン）の追加・削除・並び替えができます。除外国は表計算ファイル（Excel）に書き出して直し、eBayへ反映することもできます。そのほか、重複チェックと、出品の一括終了もできます。送料の変更などは、まず試しの実行ができ、本番では自動でバックアップを取り、書き込み後に確認します。除外国の一括設定も、eBayの画面ではなくAPIを使うこの道具で行います。</p></div><h3 class="grp">発送・関税書類</h3><div class="tool"><h4>orders（注文の確認）</h4><p><span class="pill use">MCP（AIが外のサービスを直接使うための接続口）</span></p><p>注文の一覧、個別注文の詳細、未発送の注文だけの一覧、追跡番号・配送業者・発送日などの発送情報を読み取れます（読み取り専用）。</p></div></template>
+<template id="t-ext"><h3 class="grp">はじめの準備</h3><div class="tool"><h4>アカウント作成君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>eBayとPayoneerのアカウント作成と連携を、画面の横のパネルで1ステップずつ案内します。住所・氏名・電話の英語表記もその場で作ってコピーできます。AIは使いません。</p></div><div class="tool"><h4>英語に変換君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>日本の氏名（ふりがな）・郵便番号・番地から、eBayやPayoneerの登録に使う英語の住所を自動で作ります。項目ごとにコピーできます。AIは使いません。</p></div><h3 class="grp">リサーチ</h3><div class="tool"><h4>しらべる君（eBay価格リサーチ）</h4><p><span class="pill use">Chrome拡張機能</span></p><p>メルカリの商品ページからeBayの検索を開く、価格の計算、AIによる翻訳、セラー管理で、輸出入のリサーチを助けます。</p></div><div class="tool"><h4>けんさく君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>テラピーク（eBayの売れ行きを調べる画面）・メルカリ・eBay検索の条件から検索用のページのリンクを組み立て、新しいタブで開きます。外部への送信はありません。</p></div><div class="tool"><h4>キーワードみつける君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>リサーチ中に見つけた新しいキーワードを集めて管理します。注目キーワードは緑、未分類は黄色でハイライトされます。</p></div><div class="tool"><h4>利益早見表</h4><p><span class="pill use">Chrome拡張機能</span></p><p>仕入れ値と送料から、広告費率と利益ごとの販売価格・関税・利益を一覧にします。販売価格から、仕入れ値の上限を出すこともできます。</p></div><h3 class="grp">仕入れ候補の取り込み・判定（自動出品）</h3><div class="tool"><h4>とりこみ君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>ECサイト・フリマサイトの商品情報を取得し、スプレッドシートへの書き出しやコピーができます。AI翻訳でeBay出品用のデータも作れます。自動出品スキルと組み合わせて使います。</p></div><div class="tool"><h4>みちゃった君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>以前に見た商品を、検索一覧の中で目印を付けて分かるようにします。同じ商品を何度も見る手間を減らします。</p></div><div class="tool"><h4>EC購入履歴 → Google Sheets</h4><p><span class="pill use">Chrome拡張機能</span></p><p>メルカリ・ラクマ・Yahoo!フリマ・ヤフオク・Yahoo!ショッピング・Amazon・ブックオフオンライン・ネットオフ・駿河屋・ゲオオンライン・リコレ・ふるいちオンラインの購入履歴を、自動でGoogleスプレッドシートに書き出します。</p></div><h3 class="grp">翻訳・出品データ作り</h3><div class="tool"><h4>ebayカテゴリー発見君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>eBayのカテゴリID（カテゴリの番号）を、オフラインで検索・ツリー表示・コピー・検証できます。eBay Motors（自動車・バイク部品）のカテゴリにも対応します。eBayには一切アクセスしません。</p></div><h3 class="grp">出品後の確認と修正</h3><div class="tool"><h4>eBayエラーしらべる君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>eBayのAPIのエラーコードを日本語で検索できます。登録や修正でエラーが出たときの意味の確認に使います。</p></div><h3 class="grp">発送・関税書類</h3><div class="tool"><h4>国際郵便ラベル作成君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>eBayの注文情報から、日本郵便の国際郵便マイページサービスでのラベル発行作業を助けます。</p></div><div class="tool"><h4>Watch Worksheet作成君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>FedExの新しい形式の「時計の税関ワークシート」を、ChatGPTのデータから作り、PDFでダウンロードできます。</p></div><div class="tool"><h4>HSコードワークシート作成君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>商品カテゴリごとのガイドで、HSコード・HTSUSコード（貨物の種類を表す国際的な番号）を特定し、通関ワークシートをPDFで出力します。AIを使う版では、HTSUSコードと通関用のタイトルを自動で作ります（AIの機能にはOpenAIのAPIキーが必要です）。</p></div><h3 class="grp">アカウントの見直し</h3><div class="tool"><h4>ぶんせき君</h4><p><span class="pill use">Chrome拡張機能</span></p><p>eBayからダウンロードしたCSVの分析、市場データのCSV・ZIPの読み込み、AIによる販売戦略の提案をする統合ツールです（OpenAI・Claude・Geminiに対応）。</p></div></template>
+<template id="t-ebay">
+  <h3 class="grp">10分野でできること</h3>
+  <div class="tw"><table>
+    <thead><tr><th>分野</th><th>できること</th><th>講師の使用状況</th></tr></thead>
+    <tbody>
+      <tr><td class="area">① 出品</td>
+        <td data-l="できること">新しく出品する、価格・数量・説明・Item Specifics（ブランド・サイズなどの商品の詳細項目）を直す、出品を終える、出品中の一覧を検索する。AIと組み合わせると、画像を渡すだけでAIが中身を作り、APIでオークションを開始できる</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> 一覧の検索、Item Specificsの一部修正、出品の終了、画像からのオークション出品</td></tr>
+      <tr><td class="area">② カテゴリと商品情報</td>
+        <td data-l="できること">カテゴリID（カテゴリの番号）を探す、カテゴリごとに必要な項目（Item Specifics）を調べる</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> カテゴリ名の取得、カテゴリごとの必須項目の確認</td></tr>
+      <tr><td class="area">③ 配送ポリシー・支払い・返品</td>
+        <td data-l="できること">ポリシー（発送・支払い・返品のルール）を作る・複製する・直す・消す、送料の変更、除外国（送らない国）の一括変更、発送日数の変更<br><span class="small">AIに会話で頼むだけの例：「年末年始に全ポリシーの発送日数を+3日、休み明けに戻す」</span></td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> 複製、送料変更、除外国の一括更新、送料上限の取得</td></tr>
+      <tr><td class="area">④ 注文と発送</td>
+        <td data-l="できること">注文の一覧、未発送の確認、追跡番号の登録、キャンセル・返品の確認</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> 注文と未発送の確認</td></tr>
+      <tr><td class="area">⑤ メッセージ</td>
+        <td data-l="できること">買い手の問い合わせを読む・返信する</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> 受信箱の確認と返信</td></tr>
+      <tr><td class="area">⑥ 評価</td>
+        <td data-l="できること">届いた評価を読む、お礼の返信をする</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> 良い評価へのお礼返信</td></tr>
+      <tr><td class="area">⑦ 販売促進</td>
+        <td data-l="できること">クーポンを作る、過去の買い手にメールで配る（eBayストアの機能）、広告（Promoted Listings：eBayの広告）を設定する、ウォッチャー（商品をウォッチしている人）にオファーを送る<br><span class="small">AIに会話で頼むだけの例：「ウォッチしている人に10%引きのオファーを送って」</span></td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> クーポンの作成と配信、広告の毎朝同期</td></tr>
+      <tr><td class="area">⑧ 数字の確認</td>
+        <td data-l="できること">出品の閲覧数・表示回数、セラー評価の基準、売上・入金・手数料</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> 閲覧0の出品の洗い出し、セラー基準の確認</td></tr>
+      <tr><td class="area">⑨ 大量処理</td>
+        <td data-l="できること">数千件の出品や修正をファイル1つでまとめて送る</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用実績あり</span> 全出品約1万件の送料を一括で修正</td></tr>
+      <tr><td class="area">⑩ 通知</td>
+        <td data-l="できること">売れた・問い合わせが来た等をeBayから自動で知らせてもらう（受け取る仕組みを別に用意する必要があります）</td>
+        <td data-l="講師の使用状況">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="grp">これを実現するための必須条件：eBay Developer Program</h3>
+  <div class="note warn" style="border-width:2px;padding:16px 18px;font-size:16px"><b>登録しないと、eBayのAPIを使う道具は動きません</b><br>上の全部（eBayのAPIを使う道具）は、eBay Developer Program（eBay公式の開発者登録・無料）に登録し、キーセット（eBayから発行される、APIを使うための鍵のセット。App ID・Dev ID・Cert ID）を作って初めて使えます。登録していないと、eBayのAPIを使う道具は動きません。だから合宿前の事前課題で、全員が登録とキーセット作成まで済ませます。</div>
+
+  <h3 class="grp">応用編：APIを組み合わせた仕事</h3>
+  <div class="card">
+    <h3>1. 見られていない出品の棚卸し</h3>
+    <p>30日以上前に出品し、直近30日の閲覧0・ウォッチ0の出品をAPIで洗い出し、残す・終了の候補に分けます。</p>
+    <p><b>実績：</b>出品中 約7,300件のうち約1,460件が該当し、約1,400件を終了の候補にしました。</p>
+    <p class="small">使うもの：出品の一覧＋閲覧数のAPI</p>
+  </div>
+  <div class="card">
+    <h3>2. 古い出品を1品ずつ見直す</h3>
+    <p>古い順に、「終了」「値下げなどして出し直し」「在庫補充」「仕入れ先の変更」のどれにするかを決めます。終了はAPIでまとめて行います。</p>
+  </div>
+  <div class="card">
+    <h3>3. 在庫切れ商品の在庫補充候補の選別</h3>
+    <p>在庫切れになった出品について、同じ商品の新しい仕入れ先を探し、補充できる候補を選びます。選んだ物はEAGLEのAPIで仕入れ先を差し替えます。</p>
+    <p class="small">eBayのAPIとEAGLEのAPIの組み合わせ／試験中</p>
+  </div>
+  <div class="note warn"><b>進め方</b><br>終了・価格変更などeBayの出品を変える操作は、AIが一覧を作り、人が承認してから、少数→残りの順で実行します。</div>
+</template>
+<template id="t-eagle">
+  <h3 class="grp">できること</h3>
+  <div class="tw"><table>
+    <thead><tr><th>入口</th><th>できること</th><th>講師の使用状況</th></tr></thead>
+    <tbody>
+      <tr><td class="area">一括登録</td>
+        <td data-l="できること">出品するデータをまとめて送り、EAGLEに自動で登録する（EAGLEからeBayへ出品されます）</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> 自動出品・翻訳のあとのEAGLE登録</td></tr>
+      <tr><td class="area">一括更新</td>
+        <td data-l="できること">出品中の商品の仕入れ先・仕入れ先コード・SKU（自分で付ける管理番号）・価格・オファー金額などをまとめて書き換える</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> 在庫切れ商品の仕入れ先の差し替え</td></tr>
+      <tr><td class="area">一括更新の結果</td>
+        <td data-l="できること">書き換えが成功したか・失敗したかを確かめる</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span></td></tr>
+      <tr><td class="area">商品一覧</td>
+        <td data-l="できること">EAGLEに登録した商品と状態（出品中・在庫切れなど）を取り出す</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span> 送る前の照合、二重登録の防止</td></tr>
+      <tr><td class="area">出品テンプレート・配送ポリシーの一覧</td>
+        <td data-l="できること">EAGLEに登録してあるテンプレートとポリシーを取り出す</td>
+        <td data-l="講師の使用状況"><span class="pill use">使用中</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="grp">知っておくこと</h3>
+  <div class="note warn"><b>仕入れ先は、すぐには変わりません</b><br>仕入れ先を書き換えても、すぐには変わりません。「変更の予約」になり、EAGLEの次の監視（EAGLEが仕入れ先の在庫を定期的に確かめる仕組み）のときに切り替わります。</div>
+  <div class="note warn"><b>販売価格は自動では変わりません</b><br>EAGLEは販売価格を自動では変えません。</div>
+  <div class="note no"><b>オファー金額を空欄にするときは注意</b><br>一括更新でオファー金額を空欄にするときは「値を更新しない」を選びます。「空白で更新」のままだと、eBayに設定してあるオファーの金額が消えます。</div>
+  <div class="note"><b>必要なもの</b><br>EAGLEのAPIを使うには、EAGLEのアカウントとAPIの鍵（各自のもの）が必要です。</div>
+</template>
+<template id="t-log"><p>次の3つです。どれも、何を試したか・何に失敗したか・なぜそう決めたか、が分かるように残してあります。</p><div class="tool"><h4>開発ログ（作業の日誌）</h4><p>日付ごとに、やったこと・試したこと・失敗したこと・決めた理由を書き残した日誌です。</p></div><div class="tool"><h4>AIの記憶</h4><p>AIが次の作業でも覚えておく、決まりや教訓です。失敗から学んだことと、その理由が書いてあります。</p></div><div class="tool"><h4>引き継ぎ書</h4><p>作業の続きを、次の人（次のAI）が引き継げるように、今の状態と次にやることをまとめたメモです。</p></div><p>これをAIに読ませると、AIは「なぜそうするのか」という考え方と根拠が分かるようになります。</p><p class="small">渡す前に、整理します。</p></template>
+<template id="t-g1"><p>土台の道具を使って、仕入れ先の商品からeBayへの出品までをAIが進めます。</p><h3 class="grp">関係する道具</h3><p>自動出品・とりこみ君・ebay-translation・final-check（EAGLE登録まで）</p></template>
+<template id="t-g2"><p>パソコンを止めずに、AIが夜も出品を続けます。決まった時刻に仕事を始めさせる「スケジュール機能」を使います。</p><h3 class="grp">関係する道具</h3><p>スケジュール機能</p><p>24時間回すなら、スケジュール機能（決まった時刻にAIに仕事を始めさせる機能）を活用します。</p></template>
+<template id="t-g3"><p>携帯から自宅のパソコンのAIに指示を出せます。</p></template>
+<template id="t-g4"><p>エラーや困りごとが起きても、記録を知っているAIが原因を調べて直します。</p><h3 class="grp">関係する道具</h3><p>2年間の開発の記録・eBayエラーしらべる君</p></template>
+<dialog id="dlg" aria-labelledby="dtitle">
+<div class="dhead"><h2 id="dtitle"></h2><button type="button" class="dclose" id="dclose" aria-label="閉じる">閉じる</button></div>
+<div class="dbody" id="dbody"></div>
+</dialog>
+<script>
+(function(){
+var d=document.getElementById('dlg'),t=document.getElementById('dtitle'),b=document.getElementById('dbody'),last=null;
+function openIt(el){
+  var tpl=document.getElementById('t-'+el.getAttribute('data-dlg'));
+  if(!tpl||!d.showModal){return;}
+  t.textContent=el.getAttribute('data-title');
+  b.innerHTML='';b.appendChild(tpl.content.cloneNode(true));
+  last=el;el.setAttribute('aria-expanded','true');
+  document.documentElement.classList.add('lock');
+  d.showModal();b.scrollTop=0;
+}
+var cs=document.querySelectorAll('.click');
+for(var i=0;i<cs.length;i++){
+  cs[i].addEventListener('click',function(){openIt(this);});
+  cs[i].addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openIt(this);}});
+}
+document.getElementById('dclose').addEventListener('click',function(){d.close();});
+d.addEventListener('click',function(e){if(e.target===d){d.close();}});
+d.addEventListener('close',function(){
+  document.documentElement.classList.remove('lock');
+  if(last){last.setAttribute('aria-expanded','false');last.focus();}
+});
+})();
+</script>
+</body>
+</html>
