@@ -136,6 +136,12 @@ nav ul{flex:1 1 auto;min-width:0;margin:0}
 .quality p{margin:0 0 8px;font-size:15px;color:var(--surface)}
 .quality ul{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .quality li{margin:0;background:var(--surface);color:var(--text);border-radius:999px;padding:4px 14px;font-size:14px;font-weight:700;line-height:1.5}
+.connector{text-align:center;margin:0 0 24px;padding:12px 16px;background:var(--accent-soft);border:1px dashed var(--accent);border-radius:12px}
+.connector .uphead{width:0;height:0;margin:0 auto 6px;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:12px solid var(--accent)}
+.connector h3{margin:0 0 4px;font-size:18px;color:var(--accent)}
+.connector p{margin:0;font-size:15px}
+.box.emph{border:2px solid var(--accent);background:var(--accent-soft)}
+#support>.box{margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -180,10 +186,17 @@ nav ul{flex:1 1 auto;min-width:0;margin:0}
   </div>
 </section>
 
+<div class="connector">
+  <div class="uphead"></div>
+  <h3>質を上げるのは、開発ログ</h3>
+  <p>出品の結果や失敗を開発ログに残し、AIが読み返すことで、選び方の質が上がり続けます。</p>
+</div>
+
 <section id="support">
   <h2>メインを支えるもの</h2>
-  <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="log" data-title="2年間の開発の記録"><h3>2年間の開発の記録</h3><p>開発ログ（作業の日誌）・AIの記憶・引き継ぎ書。何を試し、何に失敗し、なぜそう決めたかが残っています。</p><p class="small">数百本の開発ログと記憶（渡す前に整理します）</p><span class="hint">クリックで詳しく</span></div>
+  <div class="box click emph" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="log" data-title="2年間の開発の記録"><h3>2年間の開発の記録</h3><p>開発ログ（作業の日誌）・AIの記憶・引き継ぎ書。何を試し、何に失敗し、なぜそう決めたかが残っています。</p><p class="small">数百本の開発ログと記憶（渡す前に整理します）</p><span class="hint">クリックで詳しく</span></div>
   <p class="cap">AIが考え方と根拠を知っているから、3つを正しく組み合わせられる</p>
+  <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="place" data-title="記録の置き場（Obsidian＋GitHub）"><h3>記録の置き場（Obsidian＋GitHub）</h3><p>開発ログをためるノート（Obsidian：手元で書くノートのアプリ）と、変更の履歴を自動で残す保管場所（GitHub）。この設定も一緒に渡します。</p><span class="hint">クリックで詳しく</span></div>
   <div class="two">
     <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="mcp" data-title="自作MCP"><h3>自作MCP</h3><p>MCP（AIが外のサービスを直接使うための接続口）。eBayのAPIを使う5つ：出品・注文・メッセージ・評価・配送ポリシー。EAGLEのAPIはスキルの手順の中で使います。</p><span class="hint">クリックで詳しく</span></div>
     <div class="box click" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false" data-dlg="ext" data-title="Chrome拡張機能（ブラウザに足す小さな道具）"><h3>Chrome拡張機能（ブラウザに足す小さな道具）</h3><p>仕入れ先の商品の取り込み、カテゴリ探し、除外国の管理、関税書類の作成 など。元のファイルごと渡します。</p><span class="hint">クリックで詳しく</span></div>
@@ -320,7 +333,8 @@ nav ul{flex:1 1 auto;min-width:0;margin:0}
   <div class="note no"><b>オファー金額を空欄にするときは注意</b><br>一括更新でオファー金額を空欄にするときは「値を更新しない」を選びます。「空白で更新」のままだと、eBayに設定してあるオファーの金額が消えます。</div>
   <div class="note"><b>必要なもの</b><br>EAGLEのAPIを使うには、EAGLEのアカウントとAPIの鍵（各自のもの）が必要です。</div>
 </template>
-<template id="t-log"><p>次の3つです。どれも、何を試したか・何に失敗したか・なぜそう決めたか、が分かるように残してあります。</p><div class="tool"><h4>開発ログ（作業の日誌）</h4><p>日付ごとに、やったこと・試したこと・失敗したこと・決めた理由を書き残した日誌です。</p></div><div class="tool"><h4>AIの記憶</h4><p>AIが次の作業でも覚えておく、決まりや教訓です。失敗から学んだことと、その理由が書いてあります。</p></div><div class="tool"><h4>引き継ぎ書</h4><p>作業の続きを、次の人（次のAI）が引き継げるように、今の状態と次にやることをまとめたメモです。</p></div><p>これをAIに読ませると、AIは「なぜそうするのか」という考え方と根拠が分かるようになります。</p><p class="small">渡す前に、整理します。</p></template>
+<template id="t-place"><div class="tool"><h4>Obsidian</h4><p>ノートの保管庫。開発ログとAIの記憶を置く。</p></div><div class="tool"><h4>GitHub</h4><p>保管庫を自動で保存し、いつ何を変えたかの履歴が残る。非公開で使う。</p></div><div class="tool"><h4>設定一式を渡す</h4><p>AIが毎回の作業の前に記録を読み、後に書き足す決まりごとも含めて。</p></div></template>
+<template id="t-log"><p>次の3つです。どれも、何を試したか・何に失敗したか・なぜそう決めたか、が分かるように残してあります。</p><div class="tool"><h4>開発ログ（作業の日誌）</h4><p>日付ごとに、やったこと・試したこと・失敗したこと・決めた理由を書き残した日誌です。</p></div><div class="tool"><h4>AIの記憶</h4><p>AIが次の作業でも覚えておく、決まりや教訓です。失敗から学んだことと、その理由が書いてあります。</p></div><div class="tool"><h4>引き継ぎ書</h4><p>作業の続きを、次の人（次のAI）が引き継げるように、今の状態と次にやることをまとめたメモです。</p></div><p>これをAIに読ませると、AIは「なぜそうするのか」という考え方と根拠が分かるようになります。</p><p class="small">渡す前に、整理します。</p><p>記録の置き場（Obsidian＋GitHub）の設定も渡すので、受け取った日から自分の記録をため始められます。</p></template>
 <template id="t-g1"><p>メインの3つを組み合わせて、仕入れ先の商品からeBayへの出品までをAIが進めます。</p><h3 class="grp">関係する道具</h3><p>自動出品・とりこみ君・ebay-translation・final-check（EAGLE登録まで）</p></template>
 <template id="t-g2"><p>パソコンを止めずに、AIが夜も出品を続けます。決まった時刻に仕事を始めさせる「スケジュール機能」を使います。</p><h3 class="grp">関係する道具</h3><p>スケジュール機能</p><p>24時間回すなら、スケジュール機能（決まった時刻にAIに仕事を始めさせる機能）を活用します。</p></template>
 <template id="t-g3"><p>携帯から自宅のパソコンのAIに指示を出せます。</p></template>
